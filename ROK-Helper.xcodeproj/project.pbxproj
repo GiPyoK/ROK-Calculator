@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A617D91124D932ED008F5868 /* SpeedUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617D91024D932ED008F5868 /* SpeedUp.swift */; };
 		A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813924D75B9B00D57394 /* AppDelegate.swift */; };
 		A696813C24D75B9B00D57394 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813B24D75B9B00D57394 /* SceneDelegate.swift */; };
 		A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */; };
@@ -17,6 +18,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A617D91024D932ED008F5868 /* SpeedUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedUp.swift; sourceTree = "<group>"; };
 		A696813624D75B9B00D57394 /* ROK-Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ROK-Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A696813924D75B9B00D57394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A696813B24D75B9B00D57394 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -66,6 +68,7 @@
 				A696814A24D75B9C00D57394 /* Info.plist */,
 				A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */,
 				A696814424D75B9C00D57394 /* Preview Content */,
+				A617D91024D932ED008F5868 /* SpeedUp.swift */,
 			);
 			path = "ROK-Helper";
 			sourceTree = "<group>";
@@ -149,6 +152,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A617D91124D932ED008F5868 /* SpeedUp.swift in Sources */,
 				A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */,
 				A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */,
 				A696814124D75B9B00D57394 /* ContentView.swift in Sources */,
