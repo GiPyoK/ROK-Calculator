@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A61300DA24DA6F78000724CA /* SpeedUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */; };
 		A617D91124D932ED008F5868 /* SpeedUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = A617D91024D932ED008F5868 /* SpeedUp.swift */; };
 		A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813924D75B9B00D57394 /* AppDelegate.swift */; };
 		A696813C24D75B9B00D57394 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813B24D75B9B00D57394 /* SceneDelegate.swift */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedUpViewModel.swift; sourceTree = "<group>"; };
 		A617D91024D932ED008F5868 /* SpeedUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedUp.swift; sourceTree = "<group>"; };
 		A696813624D75B9B00D57394 /* ROK-Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ROK-Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A696813924D75B9B00D57394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +43,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A61300DB24DA6F7C000724CA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A617D91224D933C7008F5868 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A617D91024D932ED008F5868 /* SpeedUp.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A617D91324D933D0008F5868 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A696814024D75B9B00D57394 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A696812D24D75B9B00D57394 = {
 			isa = PBXGroup;
 			children = (
@@ -62,13 +88,14 @@
 			children = (
 				A696813924D75B9B00D57394 /* AppDelegate.swift */,
 				A696813B24D75B9B00D57394 /* SceneDelegate.swift */,
-				A696814024D75B9B00D57394 /* ContentView.swift */,
 				A696814224D75B9C00D57394 /* Assets.xcassets */,
 				A696814724D75B9C00D57394 /* LaunchScreen.storyboard */,
 				A696814A24D75B9C00D57394 /* Info.plist */,
 				A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */,
 				A696814424D75B9C00D57394 /* Preview Content */,
-				A617D91024D932ED008F5868 /* SpeedUp.swift */,
+				A617D91324D933D0008F5868 /* Views */,
+				A617D91224D933C7008F5868 /* Models */,
+				A61300DB24DA6F7C000724CA /* ViewModels */,
 			);
 			path = "ROK-Helper";
 			sourceTree = "<group>";
@@ -157,6 +184,7 @@
 				A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */,
 				A696814124D75B9B00D57394 /* ContentView.swift in Sources */,
 				A696813C24D75B9B00D57394 /* SceneDelegate.swift in Sources */,
+				A61300DA24DA6F78000724CA /* SpeedUpViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
