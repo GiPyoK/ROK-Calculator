@@ -74,9 +74,7 @@ struct ContentView: View {
                         TextField("#", text:$universalSpeedup)
                             .keyboardType(.numberPad)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                        Button("Submit") {
-                            UIApplication.shared.endEditing()
-                        }
+
 
                     }.padding()
                         .frame(width: 100, height: 100)
