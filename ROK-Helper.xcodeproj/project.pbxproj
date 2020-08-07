@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A61300DA24DA6F78000724CA /* SpeedUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */; };
 		A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813924D75B9B00D57394 /* AppDelegate.swift */; };
 		A696813C24D75B9B00D57394 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813B24D75B9B00D57394 /* SceneDelegate.swift */; };
 		A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */; };
@@ -14,9 +15,12 @@
 		A696814324D75B9C00D57394 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A696814224D75B9C00D57394 /* Assets.xcassets */; };
 		A696814624D75B9C00D57394 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A696814524D75B9C00D57394 /* Preview Assets.xcassets */; };
 		A696814924D75B9C00D57394 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A696814724D75B9C00D57394 /* LaunchScreen.storyboard */; };
+		A6E5731E24DBC33C00EA122B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5731D24DBC33C00EA122B /* CoreDataManager.swift */; };
+		A6E5732124DBC39000EA122B /* NSManagedObjectContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5732024DBC39000EA122B /* NSManagedObjectContext+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedUpViewModel.swift; sourceTree = "<group>"; };
 		A696813624D75B9B00D57394 /* ROK-Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ROK-Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A696813924D75B9B00D57394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A696813B24D75B9B00D57394 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -26,6 +30,8 @@
 		A696814524D75B9C00D57394 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		A696814824D75B9C00D57394 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A696814A24D75B9C00D57394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6E5731D24DBC33C00EA122B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
+		A6E5732024DBC39000EA122B /* NSManagedObjectContext+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +45,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A61300DB24DA6F7C000724CA /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A617D91224D933C7008F5868 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A617D91324D933D0008F5868 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A696814024D75B9B00D57394 /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
 		A696812D24D75B9B00D57394 = {
 			isa = PBXGroup;
 			children = (
@@ -60,12 +89,14 @@
 			children = (
 				A696813924D75B9B00D57394 /* AppDelegate.swift */,
 				A696813B24D75B9B00D57394 /* SceneDelegate.swift */,
-				A696814024D75B9B00D57394 /* ContentView.swift */,
 				A696814224D75B9C00D57394 /* Assets.xcassets */,
 				A696814724D75B9C00D57394 /* LaunchScreen.storyboard */,
 				A696814A24D75B9C00D57394 /* Info.plist */,
-				A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */,
 				A696814424D75B9C00D57394 /* Preview Content */,
+				A617D91324D933D0008F5868 /* Views */,
+				A617D91224D933C7008F5868 /* Models */,
+				A61300DB24DA6F7C000724CA /* ViewModels */,
+				A6E5731F24DBC37200EA122B /* CoreData */,
 			);
 			path = "ROK-Helper";
 			sourceTree = "<group>";
@@ -76,6 +107,16 @@
 				A696814524D75B9C00D57394 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A6E5731F24DBC37200EA122B /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				A6E5731D24DBC33C00EA122B /* CoreDataManager.swift */,
+				A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */,
+				A6E5732024DBC39000EA122B /* NSManagedObjectContext+Extension.swift */,
+			);
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -151,8 +192,11 @@
 			files = (
 				A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */,
 				A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */,
+				A6E5732124DBC39000EA122B /* NSManagedObjectContext+Extension.swift in Sources */,
 				A696814124D75B9B00D57394 /* ContentView.swift in Sources */,
 				A696813C24D75B9B00D57394 /* SceneDelegate.swift in Sources */,
+				A6E5731E24DBC33C00EA122B /* CoreDataManager.swift in Sources */,
+				A61300DA24DA6F78000724CA /* SpeedUpViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
