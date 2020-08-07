@@ -25,6 +25,8 @@ class CoreDataManager {
     func getAllSpeedups() -> [Speedup] {
         var speedups = [Speedup]()
         let speedupRequest: NSFetchRequest<Speedup> = Speedup.fetchRequest()
+        let sortByDate = NSSortDescriptor(key: "date", ascending: false)
+        speedupRequest.sortDescriptors = [sortByDate]
         
         do {
             speedups = try self.moc.fetch(speedupRequest)
