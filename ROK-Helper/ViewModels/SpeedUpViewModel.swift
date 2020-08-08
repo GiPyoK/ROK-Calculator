@@ -11,14 +11,14 @@ import SwiftUI
 import CoreData
 import Combine
 
-enum sUpName: String {
+enum SpeedupTypes: String {
     case train
     case build
     case research
     case universal
 }
 
-enum timeName: String {
+enum TimeTypes: String, CaseIterable {
     case min1
     case min5
     case min10
@@ -39,20 +39,76 @@ enum timeName: String {
 class SpeedupListViewModel: ObservableObject {
     
     @Published var allSpeedups = [SpeedUpViewModel]()
-    @Published var uSpeedups = [String : Int]()
-    @Published var tSpeedups = [String : Int]()
-    @Published var rSpeedups = [String : Int]()
-    @Published var bSpeedups = [String : Int]()
+    @State var uSpeedups = [ ("min1", "0"),
+                             ("min5", "0"),
+                             ("min10", "0"),
+                             ("min15", "0"),
+                             ("min30", "0"),
+                             ("min60", "0"),
+                             ("hour3", "0"),
+                             ("hour8", "0"),
+                             ("hour15", "0"),
+                             ("hour25", "0"),
+                             ("day3", "0"),
+                             ("day7", "0"),
+                             ("day30", "0") ]
+    @State var tSpeedups = [ ("min1", "0"),
+                             ("min5", "0"),
+                             ("min10", "0"),
+                             ("min15", "0"),
+                             ("min30", "0"),
+                             ("min60", "0"),
+                             ("hour3", "0"),
+                             ("hour8", "0"),
+                             ("hour15", "0"),
+                             ("hour25", "0"),
+                             ("day3", "0"),
+                             ("day7", "0"),
+                             ("day30", "0") ]
+    @State var rSpeedups = [ ("min1", "0"),
+                             ("min5", "0"),
+                             ("min10", "0"),
+                             ("min15", "0"),
+                             ("min30", "0"),
+                             ("min60", "0"),
+                             ("hour3", "0"),
+                             ("hour8", "0"),
+                             ("hour15", "0"),
+                             ("hour25", "0"),
+                             ("day3", "0"),
+                             ("day7", "0"),
+                             ("day30", "0") ]
+    @State var bSpeedups = [ ("min1", "0"),
+                             ("min5", "0"),
+                             ("min10", "0"),
+                             ("min15", "0"),
+                             ("min30", "0"),
+                             ("min60", "0"),
+                             ("hour3", "0"),
+                             ("hour8", "0"),
+                             ("hour15", "0"),
+                             ("hour25", "0"),
+                             ("day3", "0"),
+                             ("day7", "0"),
+                             ("day30", "0") ]
     
     private var speedups = [SpeedUpViewModel]()
     
     init() {
         fetchAllSpeedups()
         getRecentSpeedups()
-        self.uSpeedups = getSpeedupTimes(name: .universal)
-        self.tSpeedups = getSpeedupTimes(name: .train)
-        self.rSpeedups = getSpeedupTimes(name: .research)
-        self.bSpeedups = getSpeedupTimes(name: .build)
+        if let uSpeedups = getSpeedupTimes(name: .universal) {
+            self.uSpeedups = uSpeedups
+        }
+        if let tSpeedups = getSpeedupTimes(name: .train) {
+            self.tSpeedups = tSpeedups
+        }
+        if let rSpeedups = getSpeedupTimes(name: .research) {
+            self.rSpeedups = rSpeedups
+        }
+        if let bSpeedups = getSpeedupTimes(name: .build) {
+            self.bSpeedups = bSpeedups
+        }
     }
     
     func fetchAllSpeedups() {
@@ -60,41 +116,41 @@ class SpeedupListViewModel: ObservableObject {
     }
     
     private func getRecentSpeedups() {
-        if let universal = allSpeedups.first(where: { $0.name == sUpName.universal.rawValue}) {
+        if let universal = allSpeedups.first(where: { $0.name == SpeedupTypes.universal.rawValue}) {
             speedups.append(universal)
         }
         
-        if let train = allSpeedups.first(where: { $0.name == sUpName.train.rawValue }) {
+        if let train = allSpeedups.first(where: { $0.name == SpeedupTypes.train.rawValue }) {
             speedups.append(train)
         }
         
-        if let research = allSpeedups.first(where: { $0.name == sUpName.research.rawValue }) {
+        if let research = allSpeedups.first(where: { $0.name == SpeedupTypes.research.rawValue }) {
             speedups.append(research)
         }
         
-        if let build = allSpeedups.first(where: { $0.name == sUpName.build.rawValue }) {
+        if let build = allSpeedups.first(where: { $0.name == SpeedupTypes.build.rawValue }) {
             speedups.append(build)
         }
     }
     
-    private func getSpeedupTimes(name: sUpName) -> [String : Int] {
-        var timeDict = [String : Int]()
+    private func getSpeedupTimes(name: SpeedupTypes) -> [(String, String)]? {
+        var timeDict = [(String, String)]()
         
         for speedup in self.speedups {
             if speedup.name == name.rawValue {
                 let mirror = Mirror(reflecting: speedup)
                 
                 for case let (label, value) in mirror.children {
-                    guard let label = label else { return timeDict }
+                    guard let label = label else { return nil }
                     if !(["name", "date"].contains(label)) {
-                        guard let value = value as? Int else { return timeDict }
-                        timeDict[label] = value
+                        guard let value = value as? Int else { return nil }
+                        timeDict.append((label, String(value)))
                     }
                 }
                 return timeDict
             }
         }
-        return timeDict
+        return nil
     }
     
 }
