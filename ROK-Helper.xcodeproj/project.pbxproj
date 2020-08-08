@@ -16,6 +16,9 @@
 		A696814624D75B9C00D57394 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A696814524D75B9C00D57394 /* Preview Assets.xcassets */; };
 		A696814924D75B9C00D57394 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A696814724D75B9C00D57394 /* LaunchScreen.storyboard */; };
 		A6B5D5EF24DF596900382DDA /* USpeedupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B5D5EE24DF596900382DDA /* USpeedupView.swift */; };
+		A6B5D5F124DF5D4900382DDA /* RSpeedupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B5D5F024DF5D4900382DDA /* RSpeedupView.swift */; };
+		A6B5D5F324DF5ED800382DDA /* TSpeedupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B5D5F224DF5ED800382DDA /* TSpeedupView.swift */; };
+		A6B5D5F524DF5FB100382DDA /* BSpeedupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B5D5F424DF5FB100382DDA /* BSpeedupView.swift */; };
 		A6E5731E24DBC33C00EA122B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5731D24DBC33C00EA122B /* CoreDataManager.swift */; };
 		A6E5732124DBC39000EA122B /* NSManagedObjectContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5732024DBC39000EA122B /* NSManagedObjectContext+Extension.swift */; };
 /* End PBXBuildFile section */
@@ -32,6 +35,9 @@
 		A696814824D75B9C00D57394 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A696814A24D75B9C00D57394 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A6B5D5EE24DF596900382DDA /* USpeedupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = USpeedupView.swift; sourceTree = "<group>"; };
+		A6B5D5F024DF5D4900382DDA /* RSpeedupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSpeedupView.swift; sourceTree = "<group>"; };
+		A6B5D5F224DF5ED800382DDA /* TSpeedupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSpeedupView.swift; sourceTree = "<group>"; };
+		A6B5D5F424DF5FB100382DDA /* BSpeedupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSpeedupView.swift; sourceTree = "<group>"; };
 		A6E5731D24DBC33C00EA122B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A6E5732024DBC39000EA122B /* NSManagedObjectContext+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -67,6 +73,9 @@
 			children = (
 				A696814024D75B9B00D57394 /* ContentView.swift */,
 				A6B5D5EE24DF596900382DDA /* USpeedupView.swift */,
+				A6B5D5F024DF5D4900382DDA /* RSpeedupView.swift */,
+				A6B5D5F224DF5ED800382DDA /* TSpeedupView.swift */,
+				A6B5D5F424DF5FB100382DDA /* BSpeedupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -193,8 +202,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A6B5D5F324DF5ED800382DDA /* TSpeedupView.swift in Sources */,
+				A6B5D5F124DF5D4900382DDA /* RSpeedupView.swift in Sources */,
 				A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */,
 				A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */,
+				A6B5D5F524DF5FB100382DDA /* BSpeedupView.swift in Sources */,
 				A6E5732124DBC39000EA122B /* NSManagedObjectContext+Extension.swift in Sources */,
 				A6B5D5EF24DF596900382DDA /* USpeedupView.swift in Sources */,
 				A696814124D75B9B00D57394 /* ContentView.swift in Sources */,

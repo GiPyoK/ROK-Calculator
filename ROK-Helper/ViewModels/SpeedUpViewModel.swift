@@ -15,6 +15,7 @@ enum SpeedupTypes: String {
     case train
     case build
     case research
+    case heal
     case universal
 }
 
@@ -91,6 +92,19 @@ class SpeedupListViewModel: ObservableObject {
                              ("day3", "0"),
                              ("day7", "0"),
                              ("day30", "0") ]
+    @State var hSpeedups = [ ("min1", "0"),
+                             ("min5", "0"),
+                             ("min10", "0"),
+                             ("min15", "0"),
+                             ("min30", "0"),
+                             ("min60", "0"),
+                             ("hour3", "0"),
+                             ("hour8", "0"),
+                             ("hour15", "0"),
+                             ("hour25", "0"),
+                             ("day3", "0"),
+                             ("day7", "0"),
+                             ("day30", "0") ]
     
     private var speedups = [SpeedUpViewModel]()
     
@@ -108,6 +122,9 @@ class SpeedupListViewModel: ObservableObject {
         }
         if let bSpeedups = getSpeedupTimes(name: .build) {
             self.bSpeedups = bSpeedups
+        }
+        if let hSpeedups = getSpeedupTimes(name: .heal) {
+            self.hSpeedups = hSpeedups
         }
     }
     
@@ -130,6 +147,9 @@ class SpeedupListViewModel: ObservableObject {
         
         if let build = allSpeedups.first(where: { $0.name == SpeedupTypes.build.rawValue }) {
             speedups.append(build)
+        }
+        if let heal = allSpeedups.first(where: { $0.name == SpeedupTypes.heal.rawValue }) {
+            speedups.append(heal)
         }
     }
     
