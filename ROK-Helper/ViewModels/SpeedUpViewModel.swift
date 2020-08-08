@@ -11,21 +11,55 @@ import SwiftUI
 import CoreData
 import Combine
 
+enum sUpName: String {
+    case train
+    case build
+    case research
+    case universal
+}
+
+enum timeName: String {
+    case min1
+    case min5
+    case min10
+    case min15
+    case min30
+    case min60
+    
+    case hour3
+    case hour8
+    case hour15
+    case hour24
+    
+    case day3
+    case day7
+    case day30
+}
+
 class SpeedupListViewModel: ObservableObject {
     
     @Published var allSpeedups = [SpeedUpViewModel]()
-    @Published var speedups = [SpeedUpViewModel]()
+    @Published var uSpeedups = [String : Int]()
+    @Published var tSpeedups = [String : Int]()
+    @Published var rSpeedups = [String : Int]()
+    @Published var bSpeedups = [String : Int]()
+    
+    private var speedups = [SpeedUpViewModel]()
     
     init() {
         fetchAllSpeedups()
         getRecentSpeedups()
+        self.uSpeedups = getSpeedupTimes(name: .universal)
+        self.tSpeedups = getSpeedupTimes(name: .train)
+        self.rSpeedups = getSpeedupTimes(name: .research)
+        self.bSpeedups = getSpeedupTimes(name: .build)
     }
     
     func fetchAllSpeedups() {
         self.speedups = CoreDataManager.shared.getAllSpeedups().map(SpeedUpViewModel.init)
     }
     
-    func getRecentSpeedups(){
+    private func getRecentSpeedups() {
         if let universal = allSpeedups.first(where: { $0.name == sUpName.universal.rawValue}) {
             speedups.append(universal)
         }
@@ -41,6 +75,26 @@ class SpeedupListViewModel: ObservableObject {
         if let build = allSpeedups.first(where: { $0.name == sUpName.build.rawValue }) {
             speedups.append(build)
         }
+    }
+    
+    private func getSpeedupTimes(name: sUpName) -> [String : Int] {
+        var timeDict = [String : Int]()
+        
+        for speedup in self.speedups {
+            if speedup.name == name.rawValue {
+                let mirror = Mirror(reflecting: speedup)
+                
+                for case let (label, value) in mirror.children {
+                    guard let label = label else { return timeDict }
+                    if !(["name", "date"].contains(label)) {
+                        guard let value = value as? Int else { return timeDict }
+                        timeDict[label] = value
+                    }
+                }
+                return timeDict
+            }
+        }
+        return timeDict
     }
     
 }
