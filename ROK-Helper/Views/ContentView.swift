@@ -22,56 +22,12 @@ struct ContentView: View {
     }
     
     var body: some View {
-        VStack{
+        ZStack {
+            Color("CoolGray")
+                .edgesIgnoringSafeArea(.all)
             VStack {
-                HStack {
-                    Image("Universal_Speedup")
-                    Text("Universal")
-                }
-                ScrollView(.horizontal, showsIndicators: true) {
-                    HStack {
-                        ForEach(speedupListVM.uSpeedups.indices) { i in
-                            VStack {
-                                Text(self.speedupListVM.uSpeedups[i].0)
-                                TextField("#", text: self.speedupListVM.$uSpeedups[i].1)
-                                    .keyboardType(.numberPad)
-                                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                            }
-                            
-                        }
-                        
-                        VStack {
-                            Text("TEST")
-                            //                            TextField("#", text:$universalSpeedup)
-                            //                                .keyboardType(.numberPad)
-                            //                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            
-                        }.padding()
-                            .frame(width: 100, height: 100)
-                    }
-                }
-            }.padding()
-            
-            VStack {
-                HStack {
-                    Image("Training_Speedup")
-                    Text("Training")
-                }
-                ScrollView(.horizontal, showsIndicators: true) {
-                    HStack {
-                        VStack {
-                            Text("1 min")
-//                            TextField("#", text:$universalSpeedup)
-//                                .keyboardType(.numberPad)
-//                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            
-                            
-                        }.padding()
-                            .frame(width: 100, height: 100)
-                    }
-                }
-            }.padding()
-            
+                USpeedupView(uSpeedups: speedupListVM.$uSpeedups)
+            }
         }
     }
 }
