@@ -1,5 +1,5 @@
 //
-//  USpeedupView.swift
+//  RSpeedupView.swift
 //  ROK-Helper
 //
 //  Created by Gi Pyo Kim on 8/8/20.
@@ -8,28 +8,24 @@
 
 import SwiftUI
 
-struct USpeedupView: View {
-    
-    @Binding var uSpeedups: [(String, String)]
+struct RSpeedupView: View {
+    @Binding var rSpeedups: [(String, String)]
     @ObservedObject var kGuardian: KeyboardGuardian
-    
+
     var body: some View {
         VStack {
-            
             HStack {
-                Image("Universal_Speedup")
+                Image("Research_Speedup")
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(uSpeedups.indices) { i in
+                        ForEach(rSpeedups.indices) { i in
                             VStack {
                                 Text(TIMENAMES[i])
-                                TextField("#", text: self.$uSpeedups[i].1, onEditingChanged: { if $0 { self.kGuardian.showField = 0 } })
+                                TextField("#", text: self.$rSpeedups[i].1, onEditingChanged: { if $0 { self.kGuardian.showField = 2 } })
                                     .keyboardType(.numberPad)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .background(GeometryGetter(rect: self.$kGuardian.rects[0]))
-                                
-                                    
+                                .background(GeometryGetter(rect: self.$kGuardian.rects[2]))
                             }.fixedSize()
                                 .frame(minWidth: 50, minHeight: 50, alignment: .center)
                                 .padding(.horizontal, 2)
@@ -41,9 +37,8 @@ struct USpeedupView: View {
         }
     }
 }
-
-//struct USpeedupView_Previews: PreviewProvider {
 //
+//struct RSpeedupView_Previews: PreviewProvider {
 //    @State static var defaultSpeedups = [ ("min1", "0"),
 //                                          ("min5", "0"),
 //                                          ("min10", "0"),
@@ -57,8 +52,8 @@ struct USpeedupView: View {
 //                                          ("day3", "0"),
 //                                          ("day7", "0"),
 //                                          ("day30", "0") ]
-//
+//    
 //    static var previews: some View {
-//        USpeedupView(uSpeedups: $defaultSpeedups)
+//        RSpeedupView(rSpeedups: $defaultSpeedups)
 //    }
 //}

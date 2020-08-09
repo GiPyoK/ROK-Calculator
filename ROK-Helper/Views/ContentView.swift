@@ -8,14 +8,14 @@
 
 import SwiftUI
 
-
+let TIMENAMES = ["1m", "5m", "10m", "15m", "30m", "60m", "3h", "8h", "15h", "25h", "3d", "7h", "30h"]
 
 struct ContentView: View {
     
-    // https://stackoverflow.com/questions/56491881/move-textfield-up-when-the-keyboard-has-appeared-in-swiftui
-    // Good keyboard animation
-    
     @ObservedObject var speedupListVM: SpeedupListViewModel
+    
+    @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 5)
+
     
     init() {
         self.speedupListVM = SpeedupListViewModel()
@@ -26,9 +26,14 @@ struct ContentView: View {
             Color("CoolGray")
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                USpeedupView(uSpeedups: speedupListVM.$uSpeedups)
-            }
-        }
+                USpeedupView(uSpeedups: speedupListVM.$uSpeedups, kGuardian: kGuardian)
+                TSpeedupView(tSpeedups: speedupListVM.$tSpeedups, kGuardian: kGuardian)
+                RSpeedupView(rSpeedups: speedupListVM.$rSpeedups, kGuardian: kGuardian)
+                BSpeedupView(bSpeedups: speedupListVM.$bSpeedups, kGuardian: kGuardian)
+                HSpeedupView(hSpeedups: speedupListVM.$hSpeedups, kGuardian: kGuardian)
+            }.offset(y: kGuardian.slide).animation(.easeInOut(duration: 0.5))
+        }.onAppear { self.kGuardian.addObserver() }
+        .onDisappear { self.kGuardian.removeObserver() }
     }
 }
 

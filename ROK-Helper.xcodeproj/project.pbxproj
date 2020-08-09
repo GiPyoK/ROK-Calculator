@@ -19,6 +19,8 @@
 		A6B5D5F124DF5D4900382DDA /* RSpeedupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B5D5F024DF5D4900382DDA /* RSpeedupView.swift */; };
 		A6B5D5F324DF5ED800382DDA /* TSpeedupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B5D5F224DF5ED800382DDA /* TSpeedupView.swift */; };
 		A6B5D5F524DF5FB100382DDA /* BSpeedupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B5D5F424DF5FB100382DDA /* BSpeedupView.swift */; };
+		A6B5D5F724DF626900382DDA /* HSpeedupView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B5D5F624DF626900382DDA /* HSpeedupView.swift */; };
+		A6B5D5FA24DFD7B700382DDA /* KeyboardGuardian.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B5D5F924DFD7B700382DDA /* KeyboardGuardian.swift */; };
 		A6E5731E24DBC33C00EA122B /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5731D24DBC33C00EA122B /* CoreDataManager.swift */; };
 		A6E5732124DBC39000EA122B /* NSManagedObjectContext+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6E5732024DBC39000EA122B /* NSManagedObjectContext+Extension.swift */; };
 /* End PBXBuildFile section */
@@ -38,6 +40,8 @@
 		A6B5D5F024DF5D4900382DDA /* RSpeedupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RSpeedupView.swift; sourceTree = "<group>"; };
 		A6B5D5F224DF5ED800382DDA /* TSpeedupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TSpeedupView.swift; sourceTree = "<group>"; };
 		A6B5D5F424DF5FB100382DDA /* BSpeedupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSpeedupView.swift; sourceTree = "<group>"; };
+		A6B5D5F624DF626900382DDA /* HSpeedupView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HSpeedupView.swift; sourceTree = "<group>"; };
+		A6B5D5F924DFD7B700382DDA /* KeyboardGuardian.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardGuardian.swift; sourceTree = "<group>"; };
 		A6E5731D24DBC33C00EA122B /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		A6E5732024DBC39000EA122B /* NSManagedObjectContext+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -73,9 +77,10 @@
 			children = (
 				A696814024D75B9B00D57394 /* ContentView.swift */,
 				A6B5D5EE24DF596900382DDA /* USpeedupView.swift */,
-				A6B5D5F024DF5D4900382DDA /* RSpeedupView.swift */,
 				A6B5D5F224DF5ED800382DDA /* TSpeedupView.swift */,
+				A6B5D5F024DF5D4900382DDA /* RSpeedupView.swift */,
 				A6B5D5F424DF5FB100382DDA /* BSpeedupView.swift */,
+				A6B5D5F624DF626900382DDA /* HSpeedupView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -109,6 +114,7 @@
 				A617D91224D933C7008F5868 /* Models */,
 				A61300DB24DA6F7C000724CA /* ViewModels */,
 				A6E5731F24DBC37200EA122B /* CoreData */,
+				A6B5D5F824DFD78700382DDA /* Helpers */,
 			);
 			path = "ROK-Helper";
 			sourceTree = "<group>";
@@ -121,12 +127,20 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		A6B5D5F824DFD78700382DDA /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				A6E5732024DBC39000EA122B /* NSManagedObjectContext+Extension.swift */,
+				A6B5D5F924DFD7B700382DDA /* KeyboardGuardian.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		A6E5731F24DBC37200EA122B /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				A6E5731D24DBC33C00EA122B /* CoreDataManager.swift */,
 				A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */,
-				A6E5732024DBC39000EA122B /* NSManagedObjectContext+Extension.swift */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -212,6 +226,8 @@
 				A696814124D75B9B00D57394 /* ContentView.swift in Sources */,
 				A696813C24D75B9B00D57394 /* SceneDelegate.swift in Sources */,
 				A6E5731E24DBC33C00EA122B /* CoreDataManager.swift in Sources */,
+				A6B5D5FA24DFD7B700382DDA /* KeyboardGuardian.swift in Sources */,
+				A6B5D5F724DF626900382DDA /* HSpeedupView.swift in Sources */,
 				A61300DA24DA6F78000724CA /* SpeedUpViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
