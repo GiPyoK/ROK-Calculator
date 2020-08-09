@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct HSpeedupView: View {
-    @Binding var hSpeedups: [(String, String)]
+    @State var hSpeedups: [(String, String)]
     @ObservedObject var kGuardian: KeyboardGuardian
 
     

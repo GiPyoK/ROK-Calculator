@@ -10,7 +10,7 @@ import SwiftUI
 
 struct USpeedupView: View {
     
-    @Binding var uSpeedups: [(String, String)]
+    @State var uSpeedups: [(String, String)]
     @ObservedObject var kGuardian: KeyboardGuardian
     
     var body: some View {
@@ -18,7 +18,11 @@ struct USpeedupView: View {
             
             HStack {
                 Image("Universal_Speedup")
-                
+                Button(action: {
+                    print(self.uSpeedups)
+                }) {
+                    Text("Click")
+                }
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(uSpeedups.indices) { i in

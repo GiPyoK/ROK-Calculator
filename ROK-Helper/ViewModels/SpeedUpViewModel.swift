@@ -40,7 +40,20 @@ enum TimeTypes: String, CaseIterable {
 class SpeedupListViewModel: ObservableObject {
     
     @Published var allSpeedups = [SpeedUpViewModel]()
-    @State var uSpeedups = [ ("min1", ""),
+    @Published var uSpeedups = [ ("min1", ""),
+                                 ("min5", ""),
+                                 ("min10", ""),
+                                 ("min15", ""),
+                                 ("min30", ""),
+                                 ("min60", ""),
+                                 ("hour3", ""),
+                                 ("hour8", ""),
+                                 ("hour15", ""),
+                                 ("hour25", ""),
+                                 ("day3", ""),
+                                 ("day7", ""),
+                                 ("day30", "") ]
+    @Published var tSpeedups = [ ("min1", ""),
                              ("min5", ""),
                              ("min10", ""),
                              ("min15", ""),
@@ -53,7 +66,7 @@ class SpeedupListViewModel: ObservableObject {
                              ("day3", ""),
                              ("day7", ""),
                              ("day30", "") ]
-    @State var tSpeedups = [ ("min1", ""),
+    @Published var rSpeedups = [ ("min1", ""),
                              ("min5", ""),
                              ("min10", ""),
                              ("min15", ""),
@@ -66,7 +79,7 @@ class SpeedupListViewModel: ObservableObject {
                              ("day3", ""),
                              ("day7", ""),
                              ("day30", "") ]
-    @State var rSpeedups = [ ("min1", ""),
+    @Published var bSpeedups = [ ("min1", ""),
                              ("min5", ""),
                              ("min10", ""),
                              ("min15", ""),
@@ -79,20 +92,7 @@ class SpeedupListViewModel: ObservableObject {
                              ("day3", ""),
                              ("day7", ""),
                              ("day30", "") ]
-    @State var bSpeedups = [ ("min1", ""),
-                             ("min5", ""),
-                             ("min10", ""),
-                             ("min15", ""),
-                             ("min30", ""),
-                             ("min60", ""),
-                             ("hour3", ""),
-                             ("hour8", ""),
-                             ("hour15", ""),
-                             ("hour25", ""),
-                             ("day3", ""),
-                             ("day7", ""),
-                             ("day30", "") ]
-    @State var hSpeedups = [ ("min1", ""),
+    @Published var hSpeedups = [ ("min1", ""),
                              ("min5", ""),
                              ("min10", ""),
                              ("min15", ""),

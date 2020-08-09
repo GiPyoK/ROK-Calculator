@@ -26,12 +26,16 @@ struct ContentView: View {
             Color("CoolGray")
                 .edgesIgnoringSafeArea(.all)
             VStack {
-                USpeedupView(uSpeedups: speedupListVM.$uSpeedups, kGuardian: kGuardian)
-                TSpeedupView(tSpeedups: speedupListVM.$tSpeedups, kGuardian: kGuardian)
-                RSpeedupView(rSpeedups: speedupListVM.$rSpeedups, kGuardian: kGuardian)
-                BSpeedupView(bSpeedups: speedupListVM.$bSpeedups, kGuardian: kGuardian)
-                HSpeedupView(hSpeedups: speedupListVM.$hSpeedups, kGuardian: kGuardian)
-            }.offset(y: kGuardian.slide).animation(.easeInOut(duration: 0.5))
+                USpeedupView(uSpeedups: speedupListVM.uSpeedups, kGuardian: kGuardian)
+                TSpeedupView(tSpeedups: speedupListVM.tSpeedups, kGuardian: kGuardian)
+                RSpeedupView(rSpeedups: speedupListVM.rSpeedups, kGuardian: kGuardian)
+                BSpeedupView(bSpeedups: speedupListVM.bSpeedups, kGuardian: kGuardian)
+                HSpeedupView(hSpeedups: speedupListVM.hSpeedups, kGuardian: kGuardian)
+                VStack {
+                    Text(speedupListVM.uSpeedups[0].0)
+                    Text(speedupListVM.uSpeedups[0].1)
+                }
+            }.offset(y: kGuardian.slide).animation(.easeInOut(duration: 0.3))
         }.onAppear { self.kGuardian.addObserver() }
         .onDisappear { self.kGuardian.removeObserver() }
     }

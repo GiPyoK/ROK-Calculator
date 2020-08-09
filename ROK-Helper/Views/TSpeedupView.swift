@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct TSpeedupView: View {
-    @Binding var tSpeedups: [(String, String)]
+    @State var tSpeedups: [(String, String)]
     @ObservedObject var kGuardian: KeyboardGuardian
 
     
@@ -53,7 +53,7 @@ struct TSpeedupView: View {
 //                                          ("day3", "0"),
 //                                          ("day7", "0"),
 //                                          ("day30", "0") ]
-//    
+//
 //    static var previews: some View {
 //        TSpeedupView(tSpeedups: $defaultSpeedups)
 //    }

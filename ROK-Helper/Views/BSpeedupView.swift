@@ -9,7 +9,7 @@
 import SwiftUI
 
 struct BSpeedupView: View {
-    @Binding var bSpeedups: [(String, String)]
+    @State var bSpeedups: [(String, String)]
     @ObservedObject var kGuardian: KeyboardGuardian
 
     var body: some View {
