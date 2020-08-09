@@ -13,15 +13,25 @@ struct USpeedupView: View {
     @State var uSpeedups: [(String, String)]
     @ObservedObject var kGuardian: KeyboardGuardian
     
+    private func reset() {
+        for i in uSpeedups.indices {
+            self.uSpeedups[i].1 = ""
+        }
+    }
+    
     var body: some View {
         VStack {
             
             HStack {
-                Image("Universal_Speedup")
-                Button(action: {
-                    print(self.uSpeedups)
-                }) {
-                    Text("Click")
+                VStack {
+                    Image("Universal_Speedup")
+                    Button(action: {
+                        self.reset()
+                        print(self.uSpeedups)
+                    }) {
+                        Text("Clear")
+                    }
+
                 }
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
