@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A61300DA24DA6F78000724CA /* SpeedUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */; };
+		A63CE7A924E257AE00DBBA0F /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63CE7A824E257AE00DBBA0F /* Background.swift */; };
 		A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813924D75B9B00D57394 /* AppDelegate.swift */; };
 		A696813C24D75B9B00D57394 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813B24D75B9B00D57394 /* SceneDelegate.swift */; };
 		A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */; };
@@ -27,6 +28,7 @@
 
 /* Begin PBXFileReference section */
 		A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedUpViewModel.swift; sourceTree = "<group>"; };
+		A63CE7A824E257AE00DBBA0F /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		A696813624D75B9B00D57394 /* ROK-Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ROK-Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A696813924D75B9B00D57394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A696813B24D75B9B00D57394 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -132,6 +134,7 @@
 			children = (
 				A6E5732024DBC39000EA122B /* NSManagedObjectContext+Extension.swift */,
 				A6B5D5F924DFD7B700382DDA /* KeyboardGuardian.swift */,
+				A63CE7A824E257AE00DBBA0F /* Background.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -217,6 +220,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6B5D5F324DF5ED800382DDA /* TSpeedupView.swift in Sources */,
+				A63CE7A924E257AE00DBBA0F /* Background.swift in Sources */,
 				A6B5D5F124DF5D4900382DDA /* RSpeedupView.swift in Sources */,
 				A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */,
 				A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */,
