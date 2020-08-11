@@ -9,12 +9,12 @@
 import SwiftUI
 
 struct TSpeedupView: View {
-    @State var tSpeedups: [(String, String)]
+    @ObservedObject var speedupListVM: SpeedupListViewModel
     @ObservedObject var kGuardian: KeyboardGuardian
     
     private func reset() {
-        for i in tSpeedups.indices {
-            self.tSpeedups[i].1 = ""
+        for i in speedupListVM.tSpeedups.indices {
+            self.speedupListVM.tSpeedups[i].1 = ""
         }
     }
     
@@ -25,7 +25,7 @@ struct TSpeedupView: View {
                     Image("Training_Speedup")
                     Button(action: {
                         self.reset()
-                        print(self.tSpeedups)
+                        print(self.speedupListVM.tSpeedups)
                     }) {
                         Text("Clear")
                             .padding(4)
@@ -40,10 +40,13 @@ struct TSpeedupView: View {
                 
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
-                    ForEach(tSpeedups.indices) { i in
+                    ForEach(speedupListVM.tSpeedups.indices) { i in
                         VStack {
                             Text(TIMENAMES[i])
-                            TextField("#", text: self.$tSpeedups[i].1, onEditingChanged: { if $0 { self.kGuardian.showField = 1 } })
+                            TextField("#", text: self.$speedupListVM.tSpeedups[i].1, onEditingChanged: {
+                                self.speedupListVM.calculateTrainSum()
+                                if $0 { self.kGuardian.showField = 1 }
+                            })
                                 .keyboardType(.numberPad)
                                 .textFieldStyle(RoundedBorderTextFieldStyle())
                             .background(GeometryGetter(rect: self.$kGuardian.rects[1]))
@@ -58,23 +61,3 @@ struct TSpeedupView: View {
         }
     }
 }
-
-//struct TSpeedupView_Previews: PreviewProvider {
-//    @State static var defaultSpeedups = [ ("min1", "0"),
-//                                          ("min5", "0"),
-//                                          ("min10", "0"),
-//                                          ("min15", "0"),
-//                                          ("min30", "0"),
-//                                          ("min60", "0"),
-//                                          ("hour3", "0"),
-//                                          ("hour8", "0"),
-//                                          ("hour15", "0"),
-//                                          ("hour25", "0"),
-//                                          ("day3", "0"),
-//                                          ("day7", "0"),
-//                                          ("day30", "0") ]
-//
-//    static var previews: some View {
-//        TSpeedupView(tSpeedups: $defaultSpeedups)
-//    }
-//}

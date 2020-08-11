@@ -10,12 +10,12 @@ import SwiftUI
 
 struct USpeedupView: View {
     
-    @State var uSpeedups: [(String, String)]
+    @ObservedObject var speedupListVM: SpeedupListViewModel
     @ObservedObject var kGuardian: KeyboardGuardian
     
-    private func reset() {
-        for i in uSpeedups.indices {
-            self.uSpeedups[i].1 = ""
+    func reset() {
+        for i in speedupListVM.uSpeedups.indices {
+            self.speedupListVM.uSpeedups[i].1 = ""
         }
     }
     
@@ -27,7 +27,7 @@ struct USpeedupView: View {
                     Image("Universal_Speedup")
                     Button(action: {
                         self.reset()
-                        print(self.uSpeedups)
+                        print(self.speedupListVM.uSpeedups)
                     }) {
                         Text("Clear")
                             .padding(4)
@@ -40,11 +40,13 @@ struct USpeedupView: View {
                 }
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
-                        ForEach(uSpeedups.indices) { i in
+                        ForEach(speedupListVM.uSpeedups.indices) { i in
                             VStack {
                                 Text(TIMENAMES[i])
-                                TextField("#", text: self.$uSpeedups[i].1, onEditingChanged: { if $0 { self.kGuardian.showField = 0 } })
-                                    .keyboardType(.numberPad)
+                                TextField("#", text: self.$speedupListVM.uSpeedups[i].1, onEditingChanged: {
+                                    self.speedupListVM.calculateUniversalSum()
+                                    if $0 { self.kGuardian.showField = 0 }
+                                }).keyboardType(.numberPad)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                     .background(GeometryGetter(rect: self.$kGuardian.rects[0]))
                                 
@@ -60,24 +62,3 @@ struct USpeedupView: View {
         }
     }
 }
-
-//struct USpeedupView_Previews: PreviewProvider {
-//
-//    @State static var defaultSpeedups = [ ("min1", "0"),
-//                                          ("min5", "0"),
-//                                          ("min10", "0"),
-//                                          ("min15", "0"),
-//                                          ("min30", "0"),
-//                                          ("min60", "0"),
-//                                          ("hour3", "0"),
-//                                          ("hour8", "0"),
-//                                          ("hour15", "0"),
-//                                          ("hour25", "0"),
-//                                          ("day3", "0"),
-//                                          ("day7", "0"),
-//                                          ("day30", "0") ]
-//
-//    static var previews: some View {
-//        USpeedupView(uSpeedups: $defaultSpeedups)
-//    }
-//}
