@@ -30,8 +30,13 @@ struct USpeedupView: View {
                         print(self.uSpeedups)
                     }) {
                         Text("Clear")
+                            .padding(4)
+                            .foregroundColor(Color.white)
+                            .background(Color("BurntSienna"))
+                            .cornerRadius(4)
                     }
-
+                    Spacer()
+                        .frame(height: 4)
                 }
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {

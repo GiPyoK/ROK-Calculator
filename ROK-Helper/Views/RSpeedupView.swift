@@ -11,11 +11,33 @@ import SwiftUI
 struct RSpeedupView: View {
     @State var rSpeedups: [(String, String)]
     @ObservedObject var kGuardian: KeyboardGuardian
-
+    
+    private func reset() {
+        for i in rSpeedups.indices {
+            self.rSpeedups[i].1 = ""
+        }
+    }
+    
     var body: some View {
         VStack {
             HStack {
-                Image("Research_Speedup")
+                
+                VStack {
+                    Image("Research_Speedup")
+                    Button(action: {
+                        self.reset()
+                        print(self.rSpeedups)
+                    }) {
+                        Text("Clear")
+                            .padding(4)
+                            .foregroundColor(Color.white)
+                            .background(Color("BurntSienna"))
+                            .cornerRadius(4)
+                            .frame(alignment: .center)
+                    }
+                    Spacer()
+                    .frame(height: 4)
+                }
                 
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {

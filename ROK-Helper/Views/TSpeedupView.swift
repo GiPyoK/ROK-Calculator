@@ -11,13 +11,33 @@ import SwiftUI
 struct TSpeedupView: View {
     @State var tSpeedups: [(String, String)]
     @ObservedObject var kGuardian: KeyboardGuardian
-
+    
+    private func reset() {
+        for i in tSpeedups.indices {
+            self.tSpeedups[i].1 = ""
+        }
+    }
     
     var body: some View {
         VStack {
             HStack {
-                Image("Training_Speedup")
-            
+                VStack {
+                    Image("Training_Speedup")
+                    Button(action: {
+                        self.reset()
+                        print(self.tSpeedups)
+                    }) {
+                        Text("Clear")
+                            .padding(4)
+                            .foregroundColor(Color.white)
+                            .background(Color("BurntSienna"))
+                            .cornerRadius(4)
+                            .frame(alignment: .center)
+                    }
+                    Spacer()
+                    .frame(height: 4)
+                }
+                
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(tSpeedups.indices) { i in

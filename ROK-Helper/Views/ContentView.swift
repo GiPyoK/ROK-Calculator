@@ -21,23 +21,27 @@ struct ContentView: View {
         self.speedupListVM = SpeedupListViewModel()
     }
     
+    private func endEditing() {
+        UIApplication.shared.endEditing()
+    }
+    
     var body: some View {
-        ZStack {
-            Color("CoolGray")
-                .edgesIgnoringSafeArea(.all)
-            VStack {
-                USpeedupView(uSpeedups: speedupListVM.uSpeedups, kGuardian: kGuardian)
-                TSpeedupView(tSpeedups: speedupListVM.tSpeedups, kGuardian: kGuardian)
-                RSpeedupView(rSpeedups: speedupListVM.rSpeedups, kGuardian: kGuardian)
-                BSpeedupView(bSpeedups: speedupListVM.bSpeedups, kGuardian: kGuardian)
-                HSpeedupView(hSpeedups: speedupListVM.hSpeedups, kGuardian: kGuardian)
-                VStack {
-                    Text(speedupListVM.uSpeedups[0].0)
-                    Text(speedupListVM.uSpeedups[0].1)
-                }
-            }.offset(y: kGuardian.slide).animation(.easeInOut(duration: 0.3))
-        }.onAppear { self.kGuardian.addObserver() }
-        .onDisappear { self.kGuardian.removeObserver() }
+        Background {
+            ZStack {
+                Color("CoolGray")
+                    .edgesIgnoringSafeArea(.all)
+                VStack(spacing: 8) {
+                    USpeedupView(uSpeedups: self.speedupListVM.uSpeedups, kGuardian: self.kGuardian)
+                    TSpeedupView(tSpeedups: self.speedupListVM.tSpeedups, kGuardian: self.kGuardian)
+                    RSpeedupView(rSpeedups: self.speedupListVM.rSpeedups, kGuardian: self.kGuardian)
+                    BSpeedupView(bSpeedups: self.speedupListVM.bSpeedups, kGuardian: self.kGuardian)
+                    HSpeedupView(hSpeedups: self.speedupListVM.hSpeedups, kGuardian: self.kGuardian)
+                }.offset(y: self.kGuardian.slide).animation(.easeInOut(duration: 0.3))
+            }.onAppear { self.kGuardian.addObserver() }
+                .onDisappear { self.kGuardian.removeObserver() }
+        }.onTapGesture {
+            self.endEditing()
+        }
     }
 }
 
