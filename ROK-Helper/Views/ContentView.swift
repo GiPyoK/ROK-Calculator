@@ -36,6 +36,7 @@ struct ContentView: View {
                     RSpeedupView(rSpeedups: self.speedupListVM.rSpeedups, kGuardian: self.kGuardian)
                     BSpeedupView(bSpeedups: self.speedupListVM.bSpeedups, kGuardian: self.kGuardian)
                     HSpeedupView(hSpeedups: self.speedupListVM.hSpeedups, kGuardian: self.kGuardian)
+                    SpeedupTotalView()
                 }.offset(y: self.kGuardian.slide).animation(.easeInOut(duration: 0.3))
             }.onAppear { self.kGuardian.addObserver() }
                 .onDisappear { self.kGuardian.removeObserver() }

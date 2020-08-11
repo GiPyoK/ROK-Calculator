@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		A61300DA24DA6F78000724CA /* SpeedUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */; };
 		A63CE7A924E257AE00DBBA0F /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63CE7A824E257AE00DBBA0F /* Background.swift */; };
+		A63CE7AB24E25A4600DBBA0F /* SpeedupTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63CE7AA24E25A4600DBBA0F /* SpeedupTotalView.swift */; };
 		A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813924D75B9B00D57394 /* AppDelegate.swift */; };
 		A696813C24D75B9B00D57394 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813B24D75B9B00D57394 /* SceneDelegate.swift */; };
 		A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */; };
@@ -29,6 +30,7 @@
 /* Begin PBXFileReference section */
 		A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedUpViewModel.swift; sourceTree = "<group>"; };
 		A63CE7A824E257AE00DBBA0F /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
+		A63CE7AA24E25A4600DBBA0F /* SpeedupTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedupTotalView.swift; sourceTree = "<group>"; };
 		A696813624D75B9B00D57394 /* ROK-Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ROK-Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A696813924D75B9B00D57394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A696813B24D75B9B00D57394 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 				A6B5D5F024DF5D4900382DDA /* RSpeedupView.swift */,
 				A6B5D5F424DF5FB100382DDA /* BSpeedupView.swift */,
 				A6B5D5F624DF626900382DDA /* HSpeedupView.swift */,
+				A63CE7AA24E25A4600DBBA0F /* SpeedupTotalView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -232,6 +235,7 @@
 				A6E5731E24DBC33C00EA122B /* CoreDataManager.swift in Sources */,
 				A6B5D5FA24DFD7B700382DDA /* KeyboardGuardian.swift in Sources */,
 				A6B5D5F724DF626900382DDA /* HSpeedupView.swift in Sources */,
+				A63CE7AB24E25A4600DBBA0F /* SpeedupTotalView.swift in Sources */,
 				A61300DA24DA6F78000724CA /* SpeedUpViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
