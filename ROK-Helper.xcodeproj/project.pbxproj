@@ -377,6 +377,7 @@
 				DEVELOPMENT_TEAM = FLZ8CLXX64;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ROK-Helper/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -397,6 +398,7 @@
 				DEVELOPMENT_TEAM = FLZ8CLXX64;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "ROK-Helper/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

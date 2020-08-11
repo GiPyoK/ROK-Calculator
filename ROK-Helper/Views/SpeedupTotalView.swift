@@ -51,49 +51,67 @@ struct SpeedupTotalView: View {
     var body: some View {
         VStack {
             HStack {
-            Button(action: {
-                self.universalIsOn.toggle()
-            }) {
-                Image("Universal_Speedup")
-                    .opacity(self.universalIsOn ? 1.0 : 0.5)
-            }.buttonStyle(PlainButtonStyle())
+                Button(action: {
+                    self.universalIsOn.toggle()
+                }) {
+                    Image("Universal_Speedup")
+                        .opacity(self.universalIsOn ? 1.0 : 0.5)
+                }.buttonStyle(PlainButtonStyle())
+                
+                Button(action: {
+                    self.trainIsOn.toggle()
+                }) {
+                    Image("Training_Speedup")
+                        .opacity(self.trainIsOn ? 1.0 : 0.5)
+                }.buttonStyle(PlainButtonStyle())
+                
+                Button(action: {
+                    self.researchIsOn.toggle()
+                }) {
+                    Image("Research_Speedup")
+                        .opacity(self.researchIsOn ? 1.0 : 0.5)
+                }.buttonStyle(PlainButtonStyle())
+                
+                Button(action: {
+                    self.buildIsOn.toggle()
+                }) {
+                    Image("Building_Speedup")
+                        .opacity(self.buildIsOn ? 1.0 : 0.5)
+                }.buttonStyle(PlainButtonStyle())
+                
+                Button(action: {
+                    self.healIsOn.toggle()
+                }) {
+                    Image("Healing_Speedup")
+                        .opacity(self.healIsOn ? 1.0 : 0.5)
+                }.buttonStyle(PlainButtonStyle())
+            }.padding(4)
             
-            Button(action: {
-                self.trainIsOn.toggle()
-            }) {
-                Image("Training_Speedup")
-                    .opacity(self.trainIsOn ? 1.0 : 0.5)
-            }.buttonStyle(PlainButtonStyle())
-            
-            Button(action: {
-                self.researchIsOn.toggle()
-            }) {
-                Image("Research_Speedup")
-                    .opacity(self.researchIsOn ? 1.0 : 0.5)
-            }.buttonStyle(PlainButtonStyle())
-            
-            Button(action: {
-                self.buildIsOn.toggle()
-            }) {
-                Image("Building_Speedup")
-                    .opacity(self.buildIsOn ? 1.0 : 0.5)
-            }.buttonStyle(PlainButtonStyle())
-            
-            Button(action: {
-                self.healIsOn.toggle()
-            }) {
-                Image("Healing_Speedup")
-                    .opacity(self.healIsOn ? 1.0 : 0.5)
-            }.buttonStyle(PlainButtonStyle())
-        }
             
             Picker("Time Unit", selection: $timeUnit) {
                 Text("Day").tag(TimeUnit.day)
                 Text("Hour").tag(TimeUnit.hour)
                 Text("Minute").tag(TimeUnit.minute)
             }.pickerStyle(SegmentedPickerStyle())
+                .padding(4)
             
-            Text("Total: \(calculateTotal(unit: timeUnit)) \(timeUnit.rawValue)")
+            
+            HStack(alignment: .center) {
+                Text("Total:")
+                    .font(.title)
+                    .foregroundColor(.white)
+                
+                Text("\(calculateTotal(unit: timeUnit))")
+                    .font(.largeTitle)
+                    .bold()
+                    .foregroundColor(Color("DeepOrange"))
+                    .minimumScaleFactor(0.5)
+                
+                Text("\(timeUnit.rawValue)s")
+                    .font(.title)
+                .foregroundColor(.white)
+                
+            }.padding(4)
         }
     }
 }

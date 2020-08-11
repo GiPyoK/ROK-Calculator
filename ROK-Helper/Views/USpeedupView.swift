@@ -21,7 +21,6 @@ struct USpeedupView: View {
     
     var body: some View {
         VStack {
-            
             HStack {
                 VStack {
                     Image("Universal_Speedup")
