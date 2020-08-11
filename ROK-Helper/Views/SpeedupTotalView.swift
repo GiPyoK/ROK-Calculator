@@ -10,14 +10,47 @@ import SwiftUI
 
 struct SpeedupTotalView: View {
     
+    enum TimeUnit: String, CaseIterable, Identifiable {
+        case day
+        case hour
+        case minute
+        
+        var id: String { self.rawValue}
+    }
+    
+    @ObservedObject var speedupListVM: SpeedupListViewModel
+    
+    @State var timeUnit: TimeUnit = .hour
+    
     @State var universalIsOn = true
     @State var trainIsOn = false
     @State var researchIsOn = false
     @State var buildIsOn = false
     @State var healIsOn = false
     
+    private func calculateTotal(unit: TimeUnit) -> String {
+        var total: Float = 0.0
+        
+        if universalIsOn { total += Float(speedupListVM.universalSum) }
+        if trainIsOn { total += Float(speedupListVM.trainlSum) }
+        if researchIsOn { total += Float(speedupListVM.researchSum) }
+        if buildIsOn { total += Float(speedupListVM.buildSum) }
+        if healIsOn { total += Float(speedupListVM.healSum) }
+        
+        if timeUnit == .day {
+            total /= 1440.0
+            return String(format: "%.2f", total)
+        } else if timeUnit == .hour {
+            total /= 60.0
+            return String(format: "%.2f", total)
+        } else {
+            return String(format: "%.0f", total)
+        }
+    }
+    
     var body: some View {
-        HStack {
+        VStack {
+            HStack {
             Button(action: {
                 self.universalIsOn.toggle()
             }) {
@@ -53,11 +86,14 @@ struct SpeedupTotalView: View {
                     .opacity(self.healIsOn ? 1.0 : 0.5)
             }.buttonStyle(PlainButtonStyle())
         }
-    }
-}
-
-struct SpeedupTotalView_Previews: PreviewProvider {
-    static var previews: some View {
-        SpeedupTotalView()
+            
+            Picker("Time Unit", selection: $timeUnit) {
+                Text("Day").tag(TimeUnit.day)
+                Text("Hour").tag(TimeUnit.hour)
+                Text("Minute").tag(TimeUnit.minute)
+            }.pickerStyle(SegmentedPickerStyle())
+            
+            Text("Total: \(calculateTotal(unit: timeUnit)) \(timeUnit.rawValue)")
+        }
     }
 }
