@@ -30,6 +30,9 @@ struct ContentView: View {
             ZStack {
                 Color("CoolGray")
                     .edgesIgnoringSafeArea(.all)
+                
+                ScrollView(.vertical) {
+                
                 VStack(spacing: 8) {
                     Text("Speedup Calculator")
                         .bold()
@@ -52,6 +55,7 @@ struct ContentView: View {
                     
                     SpeedupTotalView(speedupListVM: self.speedupListVM)
                 }.offset(y: self.kGuardian.slide).animation(.easeInOut(duration: 0.3))
+            }
             }.onAppear { self.kGuardian.addObserver() }
                 .onDisappear { self.kGuardian.removeObserver() }
         }.onTapGesture {

@@ -33,7 +33,7 @@ struct USpeedupView: View {
                             .foregroundColor(Color.white)
                             .background(Color("BurntSienna"))
                             .cornerRadius(4)
-                    }
+                    }.padding(.leading, 4)
                     Spacer()
                         .frame(height: 4)
                 }
@@ -49,7 +49,7 @@ struct USpeedupView: View {
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                     .background(GeometryGetter(rect: self.$kGuardian.rects[0]))
                                 
-                                    
+                                
                             }.fixedSize()
                                 .frame(minWidth: 50, minHeight: 50, alignment: .center)
                                 .padding(.horizontal, 2)
