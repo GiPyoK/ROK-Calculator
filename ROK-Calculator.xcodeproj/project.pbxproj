@@ -31,7 +31,7 @@
 		A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedUpViewModel.swift; sourceTree = "<group>"; };
 		A63CE7A824E257AE00DBBA0F /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		A63CE7AA24E25A4600DBBA0F /* SpeedupTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedupTotalView.swift; sourceTree = "<group>"; };
-		A696813624D75B9B00D57394 /* ROK-Helper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ROK-Helper.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A696813624D75B9B00D57394 /* ROK-Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ROK-Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A696813924D75B9B00D57394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A696813B24D75B9B00D57394 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		A696813E24D75B9B00D57394 /* ROK_Helper.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ROK_Helper.xcdatamodel; sourceTree = "<group>"; };
@@ -93,7 +93,7 @@
 		A696812D24D75B9B00D57394 = {
 			isa = PBXGroup;
 			children = (
-				A696813824D75B9B00D57394 /* ROK-Helper */,
+				A696813824D75B9B00D57394 /* ROK-Calculator */,
 				A696813724D75B9B00D57394 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -101,12 +101,12 @@
 		A696813724D75B9B00D57394 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				A696813624D75B9B00D57394 /* ROK-Helper.app */,
+				A696813624D75B9B00D57394 /* ROK-Calculator.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		A696813824D75B9B00D57394 /* ROK-Helper */ = {
+		A696813824D75B9B00D57394 /* ROK-Calculator */ = {
 			isa = PBXGroup;
 			children = (
 				A696813924D75B9B00D57394 /* AppDelegate.swift */,
@@ -121,7 +121,7 @@
 				A6E5731F24DBC37200EA122B /* CoreData */,
 				A6B5D5F824DFD78700382DDA /* Helpers */,
 			);
-			path = "ROK-Helper";
+			path = "ROK-Calculator";
 			sourceTree = "<group>";
 		};
 		A696814424D75B9C00D57394 /* Preview Content */ = {
@@ -154,9 +154,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		A696813524D75B9B00D57394 /* ROK-Helper */ = {
+		A696813524D75B9B00D57394 /* ROK-Calculator */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = A696814D24D75B9C00D57394 /* Build configuration list for PBXNativeTarget "ROK-Helper" */;
+			buildConfigurationList = A696814D24D75B9C00D57394 /* Build configuration list for PBXNativeTarget "ROK-Calculator" */;
 			buildPhases = (
 				A696813224D75B9B00D57394 /* Sources */,
 				A696813324D75B9B00D57394 /* Frameworks */,
@@ -166,9 +166,9 @@
 			);
 			dependencies = (
 			);
-			name = "ROK-Helper";
+			name = "ROK-Calculator";
 			productName = "ROK-Helper";
-			productReference = A696813624D75B9B00D57394 /* ROK-Helper.app */;
+			productReference = A696813624D75B9B00D57394 /* ROK-Calculator.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = A696813124D75B9B00D57394 /* Build configuration list for PBXProject "ROK-Helper" */;
+			buildConfigurationList = A696813124D75B9B00D57394 /* Build configuration list for PBXProject "ROK-Calculator" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -199,7 +199,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				A696813524D75B9B00D57394 /* ROK-Helper */,
+				A696813524D75B9B00D57394 /* ROK-Calculator */,
 			);
 		};
 /* End PBXProject section */
@@ -382,7 +382,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ROK-Helper.gipgip";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ROK-Calculator.gipgip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -403,7 +403,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.ROK-Helper.gipgip";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.ROK-Calculator.gipgip";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -413,7 +413,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		A696813124D75B9B00D57394 /* Build configuration list for PBXProject "ROK-Helper" */ = {
+		A696813124D75B9B00D57394 /* Build configuration list for PBXProject "ROK-Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A696814B24D75B9C00D57394 /* Debug */,
@@ -422,7 +422,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		A696814D24D75B9C00D57394 /* Build configuration list for PBXNativeTarget "ROK-Helper" */ = {
+		A696814D24D75B9C00D57394 /* Build configuration list for PBXNativeTarget "ROK-Calculator" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				A696814E24D75B9C00D57394 /* Debug */,

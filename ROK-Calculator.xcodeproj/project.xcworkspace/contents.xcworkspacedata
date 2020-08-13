@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:ROK-Helper.xcodeproj">
+      location = "self:/Users/gipgip/Development/ROK-Helper/ROK-Helper/ROK-Calculator.xcodeproj">
    </FileRef>
 </Workspace>
