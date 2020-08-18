@@ -41,19 +41,21 @@ struct TSpeedupView: View {
             ScrollView(.horizontal, showsIndicators: false) {
                 HStack {
                     ForEach(speedupListVM.tSpeedups.indices) { i in
-                        VStack {
-                            Text(TIMENAMES[i])
-                            TextField("#", text: self.$speedupListVM.tSpeedups[i].1, onEditingChanged: {
-                                self.speedupListVM.calculateTrainSum()
-                                if $0 { self.kGuardian.showField = 1 }
-                            })
-                                .keyboardType(.numberPad)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .background(GeometryGetter(rect: self.$kGuardian.rects[1]))
-                        }.fixedSize()
-                            .frame(minWidth: 50, minHeight: 50, alignment: .center)
-                            .padding(.horizontal, 2)
-                            .padding(.vertical, 5)
+                        if i < 10 {
+                            VStack {
+                                Text(TIMENAMES[i])
+                                TextField("#", text: self.$speedupListVM.tSpeedups[i].1, onEditingChanged: {
+                                    self.speedupListVM.calculateTrainSum()
+                                    if $0 { self.kGuardian.showField = 1 }
+                                })
+                                    .keyboardType(.numberPad)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .background(GeometryGetter(rect: self.$kGuardian.rects[1]))
+                            }.fixedSize()
+                                .frame(minWidth: 50, minHeight: 50, alignment: .center)
+                                .padding(.horizontal, 2)
+                                .padding(.vertical, 5)
+                        }
                     }
                 }.padding(.horizontal)
             }

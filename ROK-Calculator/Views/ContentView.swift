@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-let TIMENAMES = ["1m", "5m", "10m", "15m", "30m", "60m", "3h", "8h", "15h", "25h", "3d", "7d", "30d"]
+let TIMENAMES = ["1m", "5m", "10m", "15m", "30m", "60m", "3h", "8h", "15h", "24h", "3d", "7d", "30d"]
 
 struct ContentView: View {
     

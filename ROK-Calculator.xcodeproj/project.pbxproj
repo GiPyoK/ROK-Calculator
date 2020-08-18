@@ -69,13 +69,6 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
-		A617D91224D933C7008F5868 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		A617D91324D933D0008F5868 /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,7 +109,6 @@
 				A696814A24D75B9C00D57394 /* Info.plist */,
 				A696814424D75B9C00D57394 /* Preview Content */,
 				A617D91324D933D0008F5868 /* Views */,
-				A617D91224D933C7008F5868 /* Models */,
 				A61300DB24DA6F7C000724CA /* ViewModels */,
 				A6E5731F24DBC37200EA122B /* CoreData */,
 				A6B5D5F824DFD78700382DDA /* Helpers */,

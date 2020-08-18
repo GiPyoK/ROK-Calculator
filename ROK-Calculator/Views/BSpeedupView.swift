@@ -36,28 +36,30 @@ struct BSpeedupView: View {
                             .frame(alignment: .center)
                     }
                     Spacer()
-                    .frame(height: 4)
+                        .frame(height: 4)
                 }
-            
-            ScrollView(.horizontal, showsIndicators: false) {
-                HStack {
-                    ForEach(speedupListVM.bSpeedups.indices) { i in
-                        VStack {
-                            Text(TIMENAMES[i])
-                            TextField("#", text: self.$speedupListVM.bSpeedups[i].1, onEditingChanged: {
-                                self.speedupListVM.calculateBuildSum()
-                                if $0 { self.kGuardian.showField = 3 }
-                            })
-                                .keyboardType(.numberPad)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .background(GeometryGetter(rect: self.$kGuardian.rects[3]))
-                        }.fixedSize()
-                            .frame(minWidth: 50, minHeight: 50, alignment: .center)
-                            .padding(.horizontal, 2)
-                            .padding(.vertical, 5)
-                    }
-                }.padding(.horizontal)
-            }
+                
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        ForEach(speedupListVM.bSpeedups.indices) { i in
+                            if i < 10 {
+                                VStack {
+                                    Text(TIMENAMES[i])
+                                    TextField("#", text: self.$speedupListVM.bSpeedups[i].1, onEditingChanged: {
+                                        self.speedupListVM.calculateBuildSum()
+                                        if $0 { self.kGuardian.showField = 3 }
+                                    })
+                                        .keyboardType(.numberPad)
+                                        .textFieldStyle(RoundedBorderTextFieldStyle())
+                                        .background(GeometryGetter(rect: self.$kGuardian.rects[3]))
+                                }.fixedSize()
+                                    .frame(minWidth: 50, minHeight: 50, alignment: .center)
+                                    .padding(.horizontal, 2)
+                                    .padding(.vertical, 5)
+                            }
+                        }
+                    }.padding(.horizontal)
+                }
             }.background(Color("AbyssGreen"))
         }
     }
