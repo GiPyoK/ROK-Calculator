@@ -3,13 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		A61300DA24DA6F78000724CA /* SpeedUpViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */; };
 		A63CE7A924E257AE00DBBA0F /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63CE7A824E257AE00DBBA0F /* Background.swift */; };
 		A63CE7AB24E25A4600DBBA0F /* SpeedupTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63CE7AA24E25A4600DBBA0F /* SpeedupTotalView.swift */; };
+		A68C88E524ED95FE0049825F /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = A68C88E424ED95FE0049825F /* SwiftUICharts */; };
 		A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813924D75B9B00D57394 /* AppDelegate.swift */; };
 		A696813C24D75B9B00D57394 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813B24D75B9B00D57394 /* SceneDelegate.swift */; };
 		A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */; };
@@ -55,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A68C88E524ED95FE0049825F /* SwiftUICharts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -159,6 +161,9 @@
 			dependencies = (
 			);
 			name = "ROK-Calculator";
+			packageProductDependencies = (
+				A68C88E424ED95FE0049825F /* SwiftUICharts */,
+			);
 			productName = "ROK-Helper";
 			productReference = A696813624D75B9B00D57394 /* ROK-Calculator.app */;
 			productType = "com.apple.product-type.application";
@@ -187,6 +192,9 @@
 				Base,
 			);
 			mainGroup = A696812D24D75B9B00D57394;
+			packageReferences = (
+				A68C88E324ED95FE0049825F /* XCRemoteSwiftPackageReference "ChartView" */,
+			);
 			productRefGroup = A696813724D75B9B00D57394 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -369,7 +377,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10.1;
-				DEVELOPMENT_ASSET_PATHS = "\"ROK-Helper/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ROK-Calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = FLZ8CLXX64;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_PREVIEWS = YES;
@@ -393,7 +401,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 10.1;
-				DEVELOPMENT_ASSET_PATHS = "\"ROK-Helper/Preview Content\"";
+				DEVELOPMENT_ASSET_PATHS = "\"ROK-Calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = FLZ8CLXX64;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
 				ENABLE_PREVIEWS = YES;
@@ -432,6 +440,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A68C88E324ED95FE0049825F /* XCRemoteSwiftPackageReference "ChartView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/AppPear/ChartView";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		A68C88E424ED95FE0049825F /* SwiftUICharts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A68C88E324ED95FE0049825F /* XCRemoteSwiftPackageReference "ChartView" */;
+			productName = SwiftUICharts;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */ = {
