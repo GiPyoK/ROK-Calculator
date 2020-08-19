@@ -17,6 +17,7 @@ struct USpeedupView: View {
         for i in speedupListVM.uSpeedups.indices {
             self.speedupListVM.uSpeedups[i].1 = ""
         }
+        self.speedupListVM.calculateUniversalSum()
     }
     
     var body: some View {
@@ -26,7 +27,6 @@ struct USpeedupView: View {
                     Image("Universal_Speedup")
                     Button(action: {
                         self.reset()
-                        print(self.speedupListVM.uSpeedups)
                     }) {
                         Text("Clear")
                             .padding(4)
@@ -48,8 +48,6 @@ struct USpeedupView: View {
                                 }).keyboardType(.numberPad)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
                                     .background(GeometryGetter(rect: self.$kGuardian.rects[0]))
-                                
-                                
                             }.fixedSize()
                                 .frame(minWidth: 50, minHeight: 50, alignment: .center)
                                 .padding(.horizontal, 2)

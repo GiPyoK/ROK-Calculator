@@ -49,7 +49,7 @@ class SpeedupListViewModel: ObservableObject {
                                  ("hour3", ""),
                                  ("hour8", ""),
                                  ("hour15", ""),
-                                 ("hour25", ""),
+                                 ("hour24", ""),
                                  ("day3", ""),
                                  ("day7", ""),
                                  ("day30", "") ]
@@ -62,10 +62,7 @@ class SpeedupListViewModel: ObservableObject {
                              ("hour3", ""),
                              ("hour8", ""),
                              ("hour15", ""),
-                             ("hour25", ""),
-                             ("day3", ""),
-                             ("day7", ""),
-                             ("day30", "") ]
+                             ("hour24", "") ]
     @Published var rSpeedups = [ ("min1", ""),
                              ("min5", ""),
                              ("min10", ""),
@@ -75,10 +72,7 @@ class SpeedupListViewModel: ObservableObject {
                              ("hour3", ""),
                              ("hour8", ""),
                              ("hour15", ""),
-                             ("hour25", ""),
-                             ("day3", ""),
-                             ("day7", ""),
-                             ("day30", "") ]
+                             ("hour24", "") ]
     @Published var bSpeedups = [ ("min1", ""),
                              ("min5", ""),
                              ("min10", ""),
@@ -88,10 +82,7 @@ class SpeedupListViewModel: ObservableObject {
                              ("hour3", ""),
                              ("hour8", ""),
                              ("hour15", ""),
-                             ("hour25", ""),
-                             ("day3", ""),
-                             ("day7", ""),
-                             ("day30", "") ]
+                             ("hour24", "") ]
     @Published var hSpeedups = [ ("min1", ""),
                              ("min5", ""),
                              ("min10", ""),
@@ -101,10 +92,7 @@ class SpeedupListViewModel: ObservableObject {
                              ("hour3", ""),
                              ("hour8", ""),
                              ("hour15", ""),
-                             ("hour25", ""),
-                             ("day3", ""),
-                             ("day7", ""),
-                             ("day30", "") ]
+                             ("hour24", "") ]
     
     // In minutes
     @Published var universalSum = 0
@@ -141,7 +129,7 @@ class SpeedupListViewModel: ObservableObject {
     
     func calculateUniversalSum() {
         self.universalSum = 0
-        for i in 0..<13 {
+        for i in self.uSpeedups.indices {
             let minute = Int(self.uSpeedups[i].1) ?? 0
             self.universalSum += (minute * TimeTypes.allCases[i].rawValue)
         }
@@ -149,7 +137,7 @@ class SpeedupListViewModel: ObservableObject {
     
     func calculateTrainSum() {
         self.trainlSum = 0
-        for i in 0..<13 {
+        for i in self.tSpeedups.indices {
             let minute = Int(self.tSpeedups[i].1) ?? 0
             self.trainlSum += (minute * TimeTypes.allCases[i].rawValue)
         }
@@ -157,7 +145,7 @@ class SpeedupListViewModel: ObservableObject {
     
     func calculateResearchSum() {
         self.researchSum = 0
-        for i in 0..<13 {
+        for i in self.rSpeedups.indices {
             let minute = Int(self.rSpeedups[i].1) ?? 0
             self.researchSum += (minute * TimeTypes.allCases[i].rawValue)
         }
@@ -165,7 +153,7 @@ class SpeedupListViewModel: ObservableObject {
     
     func calculateBuildSum() {
         self.buildSum = 0
-        for i in 0..<13 {
+        for i in self.bSpeedups.indices {
             let minute = Int(self.bSpeedups[i].1) ?? 0
             self.buildSum += (minute * TimeTypes.allCases[i].rawValue)
         }
@@ -173,7 +161,7 @@ class SpeedupListViewModel: ObservableObject {
     
     func calculateHealSum() {
         self.healSum = 0
-        for i in 0..<13 {
+        for i in self.hSpeedups.indices {
             let minute = Int(self.hSpeedups[i].1) ?? 0
             self.healSum += (minute * TimeTypes.allCases[i].rawValue)
         }

@@ -16,6 +16,7 @@ struct BSpeedupView: View {
         for i in speedupListVM.bSpeedups.indices {
             self.speedupListVM.bSpeedups[i].1 = ""
         }
+        self.speedupListVM.calculateBuildSum()
     }
     
     var body: some View {
@@ -34,7 +35,7 @@ struct BSpeedupView: View {
                             .background(Color("BurntSienna"))
                             .cornerRadius(4)
                             .frame(alignment: .center)
-                    }
+                    }.padding(.leading, 4)
                     Spacer()
                         .frame(height: 4)
                 }
@@ -42,7 +43,6 @@ struct BSpeedupView: View {
                 ScrollView(.horizontal, showsIndicators: false) {
                     HStack {
                         ForEach(speedupListVM.bSpeedups.indices) { i in
-                            if i < 10 {
                                 VStack {
                                     Text(TIMENAMES[i])
                                     TextField("#", text: self.$speedupListVM.bSpeedups[i].1, onEditingChanged: {
@@ -56,7 +56,6 @@ struct BSpeedupView: View {
                                     .frame(minWidth: 50, minHeight: 50, alignment: .center)
                                     .padding(.horizontal, 2)
                                     .padding(.vertical, 5)
-                            }
                         }
                     }.padding(.horizontal)
                 }
