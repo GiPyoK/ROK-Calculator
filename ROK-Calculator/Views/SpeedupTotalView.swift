@@ -52,10 +52,10 @@ struct SpeedupTotalView: View {
         VStack {
             HStack {
                 Button(action: {
-                    self.universalIsOn.toggle()
+                    self.buildIsOn.toggle()
                 }) {
-                    Image("Universal_Speedup")
-                        .opacity(self.universalIsOn ? 1.0 : 0.5)
+                    Image("Building_Speedup")
+                        .opacity(self.buildIsOn ? 1.0 : 0.5)
                 }.buttonStyle(PlainButtonStyle())
                 
                 Button(action: {
@@ -73,17 +73,17 @@ struct SpeedupTotalView: View {
                 }.buttonStyle(PlainButtonStyle())
                 
                 Button(action: {
-                    self.buildIsOn.toggle()
-                }) {
-                    Image("Building_Speedup")
-                        .opacity(self.buildIsOn ? 1.0 : 0.5)
-                }.buttonStyle(PlainButtonStyle())
-                
-                Button(action: {
                     self.healIsOn.toggle()
                 }) {
                     Image("Healing_Speedup")
                         .opacity(self.healIsOn ? 1.0 : 0.5)
+                }.buttonStyle(PlainButtonStyle())
+                
+                Button(action: {
+                    self.universalIsOn.toggle()
+                }) {
+                    Image("Universal_Speedup")
+                        .opacity(self.universalIsOn ? 1.0 : 0.5)
                 }.buttonStyle(PlainButtonStyle())
             }.padding(4)
             

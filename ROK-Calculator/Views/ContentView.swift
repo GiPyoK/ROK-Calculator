@@ -40,15 +40,15 @@ struct ContentView: View {
                         .padding(.top, 32)
                     
                     
-                    USpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                    BSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
                         .cornerRadius(8)
                     TSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
                         .cornerRadius(8)
                     RSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
                         .cornerRadius(8)
-                    BSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                        .cornerRadius(8)
                     HSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                        .cornerRadius(8)
+                    USpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
                         .cornerRadius(8)
                     
                     Spacer()
