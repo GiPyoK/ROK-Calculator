@@ -11,6 +11,7 @@
 		A63CE7A924E257AE00DBBA0F /* Background.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63CE7A824E257AE00DBBA0F /* Background.swift */; };
 		A63CE7AB24E25A4600DBBA0F /* SpeedupTotalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63CE7AA24E25A4600DBBA0F /* SpeedupTotalView.swift */; };
 		A68C88E524ED95FE0049825F /* SwiftUICharts in Frameworks */ = {isa = PBXBuildFile; productRef = A68C88E424ED95FE0049825F /* SwiftUICharts */; };
+		A68C88E724EEF1CB0049825F /* SpeedupChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A68C88E624EEF1CB0049825F /* SpeedupChartView.swift */; };
 		A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813924D75B9B00D57394 /* AppDelegate.swift */; };
 		A696813C24D75B9B00D57394 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A696813B24D75B9B00D57394 /* SceneDelegate.swift */; };
 		A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = A696813D24D75B9B00D57394 /* ROK_Helper.xcdatamodeld */; };
@@ -32,6 +33,7 @@
 		A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedUpViewModel.swift; sourceTree = "<group>"; };
 		A63CE7A824E257AE00DBBA0F /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		A63CE7AA24E25A4600DBBA0F /* SpeedupTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedupTotalView.swift; sourceTree = "<group>"; };
+		A68C88E624EEF1CB0049825F /* SpeedupChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedupChartView.swift; sourceTree = "<group>"; };
 		A696813624D75B9B00D57394 /* ROK-Calculator.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ROK-Calculator.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A696813924D75B9B00D57394 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A696813B24D75B9B00D57394 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -75,6 +77,7 @@
 			isa = PBXGroup;
 			children = (
 				A696814024D75B9B00D57394 /* ContentView.swift */,
+				A68C88E624EEF1CB0049825F /* SpeedupChartView.swift */,
 				A6B5D5F424DF5FB100382DDA /* BSpeedupView.swift */,
 				A6B5D5F224DF5ED800382DDA /* TSpeedupView.swift */,
 				A6B5D5F024DF5D4900382DDA /* RSpeedupView.swift */,
@@ -226,6 +229,7 @@
 				A63CE7A924E257AE00DBBA0F /* Background.swift in Sources */,
 				A6B5D5F124DF5D4900382DDA /* RSpeedupView.swift in Sources */,
 				A696813F24D75B9B00D57394 /* ROK_Helper.xcdatamodeld in Sources */,
+				A68C88E724EEF1CB0049825F /* SpeedupChartView.swift in Sources */,
 				A696813A24D75B9B00D57394 /* AppDelegate.swift in Sources */,
 				A6B5D5F524DF5FB100382DDA /* BSpeedupView.swift in Sources */,
 				A6E5732124DBC39000EA122B /* NSManagedObjectContext+Extension.swift in Sources */,
