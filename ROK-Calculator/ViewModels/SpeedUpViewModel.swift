@@ -12,8 +12,8 @@ import CoreData
 import Combine
 
 enum SpeedupTypes: String {
-    case train
     case build
+    case train
     case research
     case heal
     case universal
@@ -40,6 +40,51 @@ enum TimeTypes: Int, CaseIterable {
 class SpeedupListViewModel: ObservableObject {
     
     @Published var allSpeedups = [SpeedUpViewModel]()
+    
+    @Published var bSpeedups = [ ("min1", ""),
+                                 ("min5", ""),
+                                 ("min10", ""),
+                                 ("min15", ""),
+                                 ("min30", ""),
+                                 ("min60", ""),
+                                 ("hour3", ""),
+                                 ("hour8", ""),
+                                 ("hour15", ""),
+                                 ("hour24", "") ]
+    
+    @Published var tSpeedups = [ ("min1", ""),
+                             ("min5", ""),
+                             ("min10", ""),
+                             ("min15", ""),
+                             ("min30", ""),
+                             ("min60", ""),
+                             ("hour3", ""),
+                             ("hour8", ""),
+                             ("hour15", ""),
+                             ("hour24", "") ]
+    
+    @Published var rSpeedups = [ ("min1", ""),
+                             ("min5", ""),
+                             ("min10", ""),
+                             ("min15", ""),
+                             ("min30", ""),
+                             ("min60", ""),
+                             ("hour3", ""),
+                             ("hour8", ""),
+                             ("hour15", ""),
+                             ("hour24", "") ]
+    
+    @Published var hSpeedups = [ ("min1", ""),
+                             ("min5", ""),
+                             ("min10", ""),
+                             ("min15", ""),
+                             ("min30", ""),
+                             ("min60", ""),
+                             ("hour3", ""),
+                             ("hour8", ""),
+                             ("hour15", ""),
+                             ("hour24", "") ]
+    
     @Published var uSpeedups = [ ("min1", ""),
                                  ("min5", ""),
                                  ("min10", ""),
@@ -53,59 +98,20 @@ class SpeedupListViewModel: ObservableObject {
                                  ("day3", ""),
                                  ("day7", ""),
                                  ("day30", "") ]
-    @Published var tSpeedups = [ ("min1", ""),
-                             ("min5", ""),
-                             ("min10", ""),
-                             ("min15", ""),
-                             ("min30", ""),
-                             ("min60", ""),
-                             ("hour3", ""),
-                             ("hour8", ""),
-                             ("hour15", ""),
-                             ("hour24", "") ]
-    @Published var rSpeedups = [ ("min1", ""),
-                             ("min5", ""),
-                             ("min10", ""),
-                             ("min15", ""),
-                             ("min30", ""),
-                             ("min60", ""),
-                             ("hour3", ""),
-                             ("hour8", ""),
-                             ("hour15", ""),
-                             ("hour24", "") ]
-    @Published var bSpeedups = [ ("min1", ""),
-                             ("min5", ""),
-                             ("min10", ""),
-                             ("min15", ""),
-                             ("min30", ""),
-                             ("min60", ""),
-                             ("hour3", ""),
-                             ("hour8", ""),
-                             ("hour15", ""),
-                             ("hour24", "") ]
-    @Published var hSpeedups = [ ("min1", ""),
-                             ("min5", ""),
-                             ("min10", ""),
-                             ("min15", ""),
-                             ("min30", ""),
-                             ("min60", ""),
-                             ("hour3", ""),
-                             ("hour8", ""),
-                             ("hour15", ""),
-                             ("hour24", "") ]
     
     // In minutes
-    @Published var universalSum = 0
+    @Published var buildSum = 0
     @Published var trainlSum = 0
     @Published var researchSum = 0
-    @Published var buildSum = 0
     @Published var healSum = 0
+    @Published var universalSum = 0
     
     private var speedups = [SpeedUpViewModel]()
     
     init() {
         fetchAllSpeedups()
         getRecentSpeedups()
+        
         if let uSpeedups = getSpeedupTimes(name: .universal) {
             self.uSpeedups = uSpeedups
         }
@@ -121,10 +127,41 @@ class SpeedupListViewModel: ObservableObject {
         if let hSpeedups = getSpeedupTimes(name: .heal) {
             self.hSpeedups = hSpeedups
         }
+        
+        calculateBuildSum()
+        calculateTrainSum()
+        calculateResearchSum()
+        calculateHealSum()
+        calculateUniversalSum()
     }
     
     func fetchAllSpeedups() {
         self.speedups = CoreDataManager.shared.getAllSpeedups().map(SpeedUpViewModel.init)
+    }
+    
+    func saveAllSpeedups() {
+        
+        let allSpeedups = changeSpeedupTuplesToArray(build: self.bSpeedups, train: self.tSpeedups, research: self.rSpeedups, heal: self.hSpeedups, universal: self.uSpeedups)
+        
+        for speedup in allSpeedups {
+            speedup.saveSpeedup()
+        }
+    }
+    
+    func changeSpeedupTuplesToArray(build: [(String, String)],
+                                    train: [(String, String)],
+                                    research: [(String, String)],
+                                    heal: [(String, String)],
+                                    universal: [(String, String)] ) -> [SpeedUpViewModel] {
+        
+        var speedupVM = [SpeedUpViewModel]()
+        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.build.rawValue, tuples: build, total: self.buildSum))
+        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.train.rawValue, tuples: train, total: self.trainlSum))
+        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.research.rawValue, tuples: research, total: self.researchSum))
+        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.heal.rawValue, tuples: heal, total: self.healSum))
+        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.universal.rawValue, tuples: universal, total: self.universalSum))
+        
+        return speedupVM
     }
     
     func calculateUniversalSum() {
@@ -168,8 +205,8 @@ class SpeedupListViewModel: ObservableObject {
     }
     
     private func getRecentSpeedups() {
-        if let universal = allSpeedups.first(where: { $0.name == SpeedupTypes.universal.rawValue}) {
-            speedups.append(universal)
+        if let build = allSpeedups.first(where: { $0.name == SpeedupTypes.build.rawValue }) {
+            speedups.append(build)
         }
         
         if let train = allSpeedups.first(where: { $0.name == SpeedupTypes.train.rawValue }) {
@@ -180,11 +217,12 @@ class SpeedupListViewModel: ObservableObject {
             speedups.append(research)
         }
         
-        if let build = allSpeedups.first(where: { $0.name == SpeedupTypes.build.rawValue }) {
-            speedups.append(build)
-        }
         if let heal = allSpeedups.first(where: { $0.name == SpeedupTypes.heal.rawValue }) {
             speedups.append(heal)
+        }
+        
+        if let universal = allSpeedups.first(where: { $0.name == SpeedupTypes.universal.rawValue}) {
+            speedups.append(universal)
         }
     }
     
@@ -197,7 +235,7 @@ class SpeedupListViewModel: ObservableObject {
                 
                 for case let (label, value) in mirror.children {
                     guard let label = label else { return nil }
-                    if !(["name", "date"].contains(label)) {
+                    if !(["name", "date", "total"].contains(label)) {
                         guard let value = value as? Int else { return nil }
                         timeDict.append((label, String(value)))
                     }
@@ -230,6 +268,8 @@ class SpeedUpViewModel {
     var day7 = 0
     var day30 = 0
     
+    var total = 0
+    
     init(speedup: Speedup) {
         self.name = speedup.name!
         self.date = speedup.date!
@@ -246,9 +286,31 @@ class SpeedUpViewModel {
         self.day3 = Int(speedup.day3)
         self.day7 = Int(speedup.day7)
         self.day30 = Int(speedup.day30)
+        self.total = Int(speedup.total)
+    }
+    
+    init(name: String, tuples: [(String, String)], total: Int) {
+        self.name = name
+        self.date = Date()
+        
+        self.min1 = tuples.indices.contains(0) ? Int(tuples[0].1) ?? 0 : 0
+        self.min5 = tuples.indices.contains(1) ? Int(tuples[1].1) ?? 0 : 0
+        self.min10 = tuples.indices.contains(2) ? Int(tuples[2].1) ?? 0 : 0
+        self.min15 = tuples.indices.contains(3) ? Int(tuples[3].1) ?? 0 : 0
+        self.min30 = tuples.indices.contains(4) ? Int(tuples[4].1) ?? 0 : 0
+        self.min60 = tuples.indices.contains(5) ? Int(tuples[5].1) ?? 0 : 0
+        self.hour3 = tuples.indices.contains(6) ? Int(tuples[6].1) ?? 0 : 0
+        self.hour8 = tuples.indices.contains(7) ? Int(tuples[7].1) ?? 0 : 0
+        self.hour15 = tuples.indices.contains(8) ? Int(tuples[8].1) ?? 0 : 0
+        self.hour24 = tuples.indices.contains(9) ? Int(tuples[9].1) ?? 0 : 0
+        self.day3 = tuples.indices.contains(10) ? Int(tuples[10].1) ?? 0 : 0
+        self.day7 = tuples.indices.contains(11) ? Int(tuples[11].1) ?? 0 : 0
+        self.day30 = tuples.indices.contains(12) ? Int(tuples[12].1) ?? 0 : 0
+        
+        self.total = total
     }
     
     func saveSpeedup() {
-        CoreDataManager.shared.saveSpeedup(name: name, date: date, min1: min1, min5: min5, min10: min10, min15: min15, min30: min30, min60: min60, hour3: hour3, hour8: hour8, hour15: hour15, hour24: hour24, day3: day3, day7: day7, day30: day30)
+        CoreDataManager.shared.saveSpeedup(name: name, date: date, min1: min1, min5: min5, min10: min10, min15: min15, min30: min30, min60: min60, hour3: hour3, hour8: hour8, hour15: hour15, hour24: hour24, day3: day3, day7: day7, day30: day30, total: total)
     }
 }
