@@ -226,7 +226,6 @@ class SpeedupListViewModel: ObservableObject {
         }
     }
     
-    // TODO: Remove days times and rename timeDict variable
     private func getSpeedupTimes(name: SpeedupTypes) -> [(String, String)]? {
         var timePairs = [(String, String)]()
         
