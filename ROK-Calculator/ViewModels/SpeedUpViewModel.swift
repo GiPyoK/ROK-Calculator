@@ -226,8 +226,9 @@ class SpeedupListViewModel: ObservableObject {
         }
     }
     
+    // TODO: Remove days times and rename timeDict variable
     private func getSpeedupTimes(name: SpeedupTypes) -> [(String, String)]? {
-        var timeDict = [(String, String)]()
+        var timePairs = [(String, String)]()
         
         for speedup in self.speedups {
             if speedup.name == name.rawValue {
@@ -237,10 +238,17 @@ class SpeedupListViewModel: ObservableObject {
                     guard let label = label else { return nil }
                     if !(["name", "date", "total"].contains(label)) {
                         guard let value = value as? Int else { return nil }
-                        timeDict.append((label, String(value)))
+                        
+                        if [SpeedupTypes.build, SpeedupTypes.train, SpeedupTypes.research, SpeedupTypes.heal].contains(name) {
+                            if ["hour24", "day3", "day7", "day30"].contains(label) {
+                                continue
+                            }
+                        }
+                        
+                        timePairs.append((label, String(value)))
                     }
                 }
-                return timeDict
+                return timePairs
             }
         }
         return nil
