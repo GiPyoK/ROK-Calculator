@@ -32,7 +32,7 @@ struct SpeedupTotalView: View {
         var total: Float = 0.0
         
         if universalIsOn { total += Float(speedupListVM.universalSum) }
-        if trainIsOn { total += Float(speedupListVM.trainlSum) }
+        if trainIsOn { total += Float(speedupListVM.trainSum) }
         if researchIsOn { total += Float(speedupListVM.researchSum) }
         if buildIsOn { total += Float(speedupListVM.buildSum) }
         if healIsOn { total += Float(speedupListVM.healSum) }
@@ -52,10 +52,10 @@ struct SpeedupTotalView: View {
         VStack {
             HStack {
                 Button(action: {
-                    self.universalIsOn.toggle()
+                    self.buildIsOn.toggle()
                 }) {
-                    Image("Universal_Speedup")
-                        .opacity(self.universalIsOn ? 1.0 : 0.5)
+                    Image("Building_Speedup")
+                        .opacity(self.buildIsOn ? 1.0 : 0.5)
                 }.buttonStyle(PlainButtonStyle())
                 
                 Button(action: {
@@ -73,17 +73,17 @@ struct SpeedupTotalView: View {
                 }.buttonStyle(PlainButtonStyle())
                 
                 Button(action: {
-                    self.buildIsOn.toggle()
-                }) {
-                    Image("Building_Speedup")
-                        .opacity(self.buildIsOn ? 1.0 : 0.5)
-                }.buttonStyle(PlainButtonStyle())
-                
-                Button(action: {
                     self.healIsOn.toggle()
                 }) {
                     Image("Healing_Speedup")
                         .opacity(self.healIsOn ? 1.0 : 0.5)
+                }.buttonStyle(PlainButtonStyle())
+                
+                Button(action: {
+                    self.universalIsOn.toggle()
+                }) {
+                    Image("Universal_Speedup")
+                        .opacity(self.universalIsOn ? 1.0 : 0.5)
                 }.buttonStyle(PlainButtonStyle())
             }.padding(4)
             

@@ -16,8 +16,9 @@
         <attribute name="min30" optional="YES" attributeType="Integer 32" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="min60" optional="YES" attributeType="Integer 32" minValueString="0" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
+        <attribute name="total" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
     </entity>
     <elements>
-        <element name="Speedup" positionX="-63" positionY="-18" width="128" height="268"/>
+        <element name="Speedup" positionX="-63" positionY="-18" width="128" height="283"/>
     </elements>
 </model>

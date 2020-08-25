@@ -41,7 +41,7 @@ class CoreDataManager {
     func saveSpeedup(name: String, date: Date,
                      min1: Int, min5: Int, min10: Int, min15: Int, min30: Int, min60: Int,
                      hour3: Int, hour8: Int, hour15: Int, hour24: Int,
-                     day3: Int, day7: Int, day30: Int) {
+                     day3: Int, day7: Int, day30: Int, total: Int) {
         
         let speedup = Speedup(context: self.moc)
         speedup.name = name
@@ -59,6 +59,7 @@ class CoreDataManager {
         speedup.day3 = Int32(day3)
         speedup.day7 = Int32(day7)
         speedup.day30 = Int32(day30)
+        speedup.total = Int64(total)
         
         do {
             try self.moc.save()

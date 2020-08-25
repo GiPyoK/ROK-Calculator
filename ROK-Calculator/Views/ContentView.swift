@@ -15,6 +15,8 @@ struct ContentView: View {
     @ObservedObject var speedupListVM: SpeedupListViewModel
     @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 5)
     
+    @State private var showingAlert = false
+    @State private var presentChart = false
     
     init() {
         self.speedupListVM = SpeedupListViewModel()
@@ -39,16 +41,37 @@ struct ContentView: View {
                         .foregroundColor(Color("DeepOrange"))
                         .padding(.top, 32)
                     
+                    HStack {
+                        Button(action: {
+                            self.speedupListVM.SaveAndUpdateTotals()
+                            self.showingAlert = true
+                        }) {
+                            Text("Save")
+                        }.alert(isPresented: self.$showingAlert) {
+                            Alert(title: Text("All speedups saved!"), message: Text("Check out the charts!"), dismissButton: .default(Text("R\"OK\"")))
+                        }
+                        
+                        Button(action: {
+                            self.speedupListVM.UpdateAllTotals()
+                            self.presentChart = true
+                        }) {
+                            Text("Chart")
+                        }.sheet(isPresented: self.$presentChart) {
+                            SpeedupChartView(speedupListVM: self.speedupListVM)
+                        }
+                        
+                    }
                     
-                    USpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                    
+                    BSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
                         .cornerRadius(8)
                     TSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
                         .cornerRadius(8)
                     RSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
                         .cornerRadius(8)
-                    BSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                        .cornerRadius(8)
                     HSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                        .cornerRadius(8)
+                    USpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
                         .cornerRadius(8)
                     
                     Spacer()
