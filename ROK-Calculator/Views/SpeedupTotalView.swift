@@ -32,7 +32,7 @@ struct SpeedupTotalView: View {
         var total: Float = 0.0
         
         if universalIsOn { total += Float(speedupListVM.universalSum) }
-        if trainIsOn { total += Float(speedupListVM.trainlSum) }
+        if trainIsOn { total += Float(speedupListVM.trainSum) }
         if researchIsOn { total += Float(speedupListVM.researchSum) }
         if buildIsOn { total += Float(speedupListVM.buildSum) }
         if healIsOn { total += Float(speedupListVM.healSum) }

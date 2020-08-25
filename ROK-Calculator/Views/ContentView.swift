@@ -16,6 +16,7 @@ struct ContentView: View {
     @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 5)
     
     @State private var showingAlert = false
+    @State private var presentChart = false
     
     init() {
         self.speedupListVM = SpeedupListViewModel()
@@ -42,7 +43,7 @@ struct ContentView: View {
                     
                     HStack {
                         Button(action: {
-                            self.speedupListVM.saveAllSpeedups()
+                            self.speedupListVM.SaveAndUpdateTotals()
                             self.showingAlert = true
                         }) {
                             Text("Save")
@@ -50,7 +51,14 @@ struct ContentView: View {
                             Alert(title: Text("All speedups saved!"), message: Text("Check out the charts!"), dismissButton: .default(Text("R\"OK\"")))
                         }
                         
-                        SpeedupChartView(speedupListVM: self.speedupListVM)
+                        Button(action: {
+                            self.speedupListVM.UpdateAllTotals()
+                            self.presentChart = true
+                        }) {
+                            Text("Chart")
+                        }.sheet(isPresented: self.$presentChart) {
+                            SpeedupChartView(speedupListVM: self.speedupListVM)
+                        }
                         
                     }
                     

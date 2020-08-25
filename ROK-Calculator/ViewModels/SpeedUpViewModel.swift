@@ -39,7 +39,7 @@ enum TimeTypes: Int, CaseIterable {
 
 class SpeedupListViewModel: ObservableObject {
     
-    @Published var allSpeedups = [SpeedUpViewModel]()
+//    @Published var allSpeedups = [SpeedUpViewModel]()
     
     @Published var bSpeedups = [ ("min1", ""),
                                  ("min5", ""),
@@ -49,8 +49,7 @@ class SpeedupListViewModel: ObservableObject {
                                  ("min60", ""),
                                  ("hour3", ""),
                                  ("hour8", ""),
-                                 ("hour15", ""),
-                                 ("hour24", "") ]
+                                 ("hour15", "") ]
     
     @Published var tSpeedups = [ ("min1", ""),
                              ("min5", ""),
@@ -60,8 +59,7 @@ class SpeedupListViewModel: ObservableObject {
                              ("min60", ""),
                              ("hour3", ""),
                              ("hour8", ""),
-                             ("hour15", ""),
-                             ("hour24", "") ]
+                             ("hour15", "") ]
     
     @Published var rSpeedups = [ ("min1", ""),
                              ("min5", ""),
@@ -71,8 +69,7 @@ class SpeedupListViewModel: ObservableObject {
                              ("min60", ""),
                              ("hour3", ""),
                              ("hour8", ""),
-                             ("hour15", ""),
-                             ("hour24", "") ]
+                             ("hour15", "") ]
     
     @Published var hSpeedups = [ ("min1", ""),
                              ("min5", ""),
@@ -82,8 +79,7 @@ class SpeedupListViewModel: ObservableObject {
                              ("min60", ""),
                              ("hour3", ""),
                              ("hour8", ""),
-                             ("hour15", ""),
-                             ("hour24", "") ]
+                             ("hour15", "") ]
     
     @Published var uSpeedups = [ ("min1", ""),
                                  ("min5", ""),
@@ -101,10 +97,16 @@ class SpeedupListViewModel: ObservableObject {
     
     // In minutes
     @Published var buildSum = 0
-    @Published var trainlSum = 0
+    @Published var trainSum = 0
     @Published var researchSum = 0
     @Published var healSum = 0
     @Published var universalSum = 0
+    
+    @Published var buildTotals = [Double]()
+    @Published var trainTotals = [Double]()
+    @Published var researchTotals = [Double]()
+    @Published var healTotals = [Double]()
+    @Published var universalTotals = [Double]()
     
     private var speedups = [SpeedUpViewModel]()
     
@@ -148,35 +150,34 @@ class SpeedupListViewModel: ObservableObject {
         }
     }
     
-    func changeSpeedupTuplesToArray(build: [(String, String)],
-                                    train: [(String, String)],
-                                    research: [(String, String)],
-                                    heal: [(String, String)],
-                                    universal: [(String, String)] ) -> [SpeedUpViewModel] {
-        
-        var speedupVM = [SpeedUpViewModel]()
-        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.build.rawValue, tuples: build, total: self.buildSum))
-        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.train.rawValue, tuples: train, total: self.trainlSum))
-        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.research.rawValue, tuples: research, total: self.researchSum))
-        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.heal.rawValue, tuples: heal, total: self.healSum))
-        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.universal.rawValue, tuples: universal, total: self.universalSum))
-        
-        return speedupVM
+    func SaveAndUpdateTotals() {
+        saveAllSpeedups()
+        fetchAllSpeedups()
+        UpdateAllTotals()
     }
     
-    func calculateUniversalSum() {
-        self.universalSum = 0
-        for i in self.uSpeedups.indices {
-            let minute = Int(self.uSpeedups[i].1) ?? 0
-            self.universalSum += (minute * TimeTypes.allCases[i].rawValue)
+    func UpdateAllTotals() {
+        updateBuildTotals()
+        updateTrainTotals()
+        updateResearchTotals()
+        updateHealTotals()
+        updateUniversalTotals()
+    }
+    
+    // MARK: Calculate Sum
+    func calculateBuildSum() {
+        self.buildSum = 0
+        for i in self.bSpeedups.indices {
+            let minute = Int(self.bSpeedups[i].1) ?? 0
+            self.buildSum += (minute * TimeTypes.allCases[i].rawValue)
         }
     }
     
     func calculateTrainSum() {
-        self.trainlSum = 0
+        self.trainSum = 0
         for i in self.tSpeedups.indices {
             let minute = Int(self.tSpeedups[i].1) ?? 0
-            self.trainlSum += (minute * TimeTypes.allCases[i].rawValue)
+            self.trainSum += (minute * TimeTypes.allCases[i].rawValue)
         }
     }
     
@@ -188,14 +189,6 @@ class SpeedupListViewModel: ObservableObject {
         }
     }
     
-    func calculateBuildSum() {
-        self.buildSum = 0
-        for i in self.bSpeedups.indices {
-            let minute = Int(self.bSpeedups[i].1) ?? 0
-            self.buildSum += (minute * TimeTypes.allCases[i].rawValue)
-        }
-    }
-    
     func calculateHealSum() {
         self.healSum = 0
         for i in self.hSpeedups.indices {
@@ -204,24 +197,94 @@ class SpeedupListViewModel: ObservableObject {
         }
     }
     
+    func calculateUniversalSum() {
+        self.universalSum = 0
+        for i in self.uSpeedups.indices {
+            let minute = Int(self.uSpeedups[i].1) ?? 0
+            self.universalSum += (minute * TimeTypes.allCases[i].rawValue)
+        }
+    }
+    
+    // MARK: Update Totals
+    private func updateBuildTotals() {
+        self.buildTotals = self.speedups
+        .filter { $0.name == SpeedupTypes.build.rawValue }
+        .sorted { ($0.date > $1.date) }
+        .map { Double($0.total) }
+    }
+    
+    private func updateTrainTotals() {
+        self.trainTotals = self.speedups
+        .filter { $0.name == SpeedupTypes.train.rawValue }
+        .sorted { ($0.date > $1.date) }
+        .map { Double($0.total) }
+    }
+    
+    private func updateResearchTotals() {
+        self.researchTotals = self.speedups
+        .filter { $0.name == SpeedupTypes.research.rawValue }
+        .sorted { ($0.date > $1.date) }
+        .map { Double($0.total) }
+    }
+    
+    private func updateHealTotals() {
+        self.healTotals = self.speedups
+        .filter { $0.name == SpeedupTypes.heal.rawValue }
+        .sorted { ($0.date > $1.date) }
+        .map { Double($0.total) }
+    }
+    
+    private func updateUniversalTotals() {
+        self.universalTotals = self.speedups
+        .filter { $0.name == SpeedupTypes.universal.rawValue }
+        .sorted { ($0.date > $1.date) }
+        .map { Double($0.total) }
+    }
+    
+    private func changeSpeedupTuplesToArray(build: [(String, String)],
+                                    train: [(String, String)],
+                                    research: [(String, String)],
+                                    heal: [(String, String)],
+                                    universal: [(String, String)] ) -> [SpeedUpViewModel] {
+        
+        UpdateAllSum()
+        
+        var speedupVM = [SpeedUpViewModel]()
+        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.build.rawValue, tuples: build, total: self.buildSum))
+        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.train.rawValue, tuples: train, total: self.trainSum))
+        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.research.rawValue, tuples: research, total: self.researchSum))
+        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.heal.rawValue, tuples: heal, total: self.healSum))
+        speedupVM.append(SpeedUpViewModel(name: SpeedupTypes.universal.rawValue, tuples: universal, total: self.universalSum))
+        
+        return speedupVM
+    }
+    
+    private func UpdateAllSum() {
+        calculateBuildSum()
+        calculateTrainSum()
+        calculateResearchSum()
+        calculateHealSum()
+        calculateUniversalSum()
+    }
+    
     private func getRecentSpeedups() {
-        if let build = allSpeedups.first(where: { $0.name == SpeedupTypes.build.rawValue }) {
+        if let build = speedups.first(where: { $0.name == SpeedupTypes.build.rawValue }) {
             speedups.append(build)
         }
         
-        if let train = allSpeedups.first(where: { $0.name == SpeedupTypes.train.rawValue }) {
+        if let train = speedups.first(where: { $0.name == SpeedupTypes.train.rawValue }) {
             speedups.append(train)
         }
         
-        if let research = allSpeedups.first(where: { $0.name == SpeedupTypes.research.rawValue }) {
+        if let research = speedups.first(where: { $0.name == SpeedupTypes.research.rawValue }) {
             speedups.append(research)
         }
         
-        if let heal = allSpeedups.first(where: { $0.name == SpeedupTypes.heal.rawValue }) {
+        if let heal = speedups.first(where: { $0.name == SpeedupTypes.heal.rawValue }) {
             speedups.append(heal)
         }
         
-        if let universal = allSpeedups.first(where: { $0.name == SpeedupTypes.universal.rawValue}) {
+        if let universal = speedups.first(where: { $0.name == SpeedupTypes.universal.rawValue}) {
             speedups.append(universal)
         }
     }
@@ -243,7 +306,6 @@ class SpeedupListViewModel: ObservableObject {
                                 continue
                             }
                         }
-                        
                         timePairs.append((label, String(value)))
                     }
                 }

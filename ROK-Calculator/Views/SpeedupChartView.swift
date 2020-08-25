@@ -11,53 +11,25 @@ import SwiftUICharts
 
 struct SpeedupChartView: View {
     
-    @ObservedObject var speedupListVM: SpeedupListViewModel {
-        didSet {
-            update()
-        }
-    }
-    
-    @State var buildSpeedups = [Double]()
-    @State var trainSpeedups = [Double]()
-    @State var researchSpeedups = [Double]()
-    @State var healSpeedups = [Double]()
-    @State var universalSpeedups = [Double]()
-    
-    private func update() {
-        self.buildSpeedups = self.speedupListVM.allSpeedups
-                                .filter { $0.name == SpeedupTypes.build.rawValue }
-                                .sorted { ($0.date > $1.date) }
-                                .map { Double($0.total) }
-        
-        self.trainSpeedups = self.speedupListVM.allSpeedups
-                                .filter { $0.name == SpeedupTypes.train.rawValue }
-                                .sorted { ($0.date > $1.date) }
-                                .map { Double($0.total) }
-        
-        self.researchSpeedups = self.speedupListVM.allSpeedups
-                                .filter { $0.name == SpeedupTypes.research.rawValue }
-                                .sorted { ($0.date > $1.date) }
-                                .map { Double($0.total) }
-        
-        self.healSpeedups = self.speedupListVM.allSpeedups
-                                .filter { $0.name == SpeedupTypes.heal.rawValue }
-                                .sorted { ($0.date > $1.date) }
-                                .map { Double($0.total) }
-        
-        self.universalSpeedups = self.speedupListVM.allSpeedups
-                                .filter { $0.name == SpeedupTypes.universal.rawValue }
-                                .sorted { ($0.date > $1.date) }
-                                .map { Double($0.total) }
-        
-        
-    }
+    @ObservedObject var speedupListVM: SpeedupListViewModel
     
     var body: some View {
-        MultiLineChartView(data: [(buildSpeedups, GradientColors.blu),
-                                  (trainSpeedups, GradientColors.orange),
-                                  (researchSpeedups, GradientColors.green),
-                                  (healSpeedups, GradientColors.purple),
-                                  (universalSpeedups, GradientColors.prplNeon)], title: "Speedup Totals")
+        ZStack {
+            Color("CoolGray")
+                .edgesIgnoringSafeArea(.all)
+            
+            VStack {
+                BarChartView(data: ChartData(points: speedupListVM.buildTotals), title: "Build", legend: "total in minutes", style: Styles.barChartMidnightGreenDark, form: ChartForm.large, valueSpecifier: "%.0f")
+                
+                BarChartView(data: ChartData(points: speedupListVM.trainTotals), title: "Train", legend: "total in minutes", style: Styles.barChartMidnightGreenDark, form: ChartForm.large, valueSpecifier: "%.0f")
+                
+                BarChartView(data: ChartData(points: speedupListVM.researchTotals), title: "Research", legend: "total in minutes", style: Styles.barChartMidnightGreenDark, form: ChartForm.large, valueSpecifier: "%.0f")
+                
+                BarChartView(data: ChartData(points: speedupListVM.healTotals), title: "Heal", legend: "total in minutes", style: Styles.barChartMidnightGreenDark, form: ChartForm.large, valueSpecifier: "%.0f")
+                
+                BarChartView(data: ChartData(points: speedupListVM.universalTotals), title: "Universal", legend: "total in minutes", style: Styles.barChartMidnightGreenDark, form: ChartForm.large, valueSpecifier: "%.0f")
+            }
+        }
     }
 }
 
