@@ -29,6 +29,7 @@ struct ContentView: View {
     var body: some View {
         Background {
             ZStack {
+                GeometryReader { geometry in
                 Color("CoolGray")
                     .edgesIgnoringSafeArea(.all)
                 
@@ -47,6 +48,11 @@ struct ContentView: View {
                             self.showingAlert = true
                         }) {
                             Text("Save")
+                                .frame(width: geometry.size.width/2 - 24, height: nil, alignment: .center)
+                                .padding(4)
+                                .foregroundColor(Color.black)
+                                .background(Color.white)
+                                .cornerRadius(4)
                         }.alert(isPresented: self.$showingAlert) {
                             Alert(title: Text("All speedups saved!"), message: Text("Check out the charts!"), dismissButton: .default(Text("R\"OK\"")))
                         }
@@ -56,6 +62,11 @@ struct ContentView: View {
                             self.presentChart = true
                         }) {
                             Text("Chart")
+                                .frame(width: geometry.size.width/2 - 24, height: nil, alignment: .center)
+                                .padding(4)
+                                .foregroundColor(Color.black)
+                                .background(Color.white)
+                                .cornerRadius(4)
                         }.sheet(isPresented: self.$presentChart) {
                             SpeedupChartView(speedupListVM: self.speedupListVM)
                         }
@@ -86,7 +97,7 @@ struct ContentView: View {
         }.onTapGesture {
             self.endEditing()
         }
-        
+        }
     }
 }
 
