@@ -14,10 +14,7 @@ struct ContentView: View {
     
     @ObservedObject var speedupListVM: SpeedupListViewModel
     @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 5)
-    
-    @State private var showingAlert = false
-    @State private var presentChart = false
-    
+
     init() {
         self.speedupListVM = SpeedupListViewModel()
     }
@@ -29,74 +26,44 @@ struct ContentView: View {
     var body: some View {
         Background {
             ZStack {
-                GeometryReader { geometry in
-                Color("CoolGray")
-                    .edgesIgnoringSafeArea(.all)
-                
-                ScrollView(.vertical) {
-                
-                VStack(spacing: 8) {
-                    Text("Speedup Calculator")
-                        .bold()
-                        .font(.title)
-                        .foregroundColor(Color("DeepOrange"))
-                        .padding(.top, 32)
+               
+                    Color("CoolGray")
+                        .edgesIgnoringSafeArea(.all)
                     
-                    HStack {
-                        Button(action: {
-                            self.speedupListVM.SaveAndUpdateTotals()
-                            self.showingAlert = true
-                        }) {
-                            Text("Save")
-                                .frame(width: geometry.size.width/2 - 24, height: nil, alignment: .center)
-                                .padding(4)
-                                .foregroundColor(Color.black)
-                                .background(Color.white)
-                                .cornerRadius(4)
-                        }.alert(isPresented: self.$showingAlert) {
-                            Alert(title: Text("All speedups saved!"), message: Text("Check out the charts!"), dismissButton: .default(Text("R\"OK\"")))
-                        }
+                    ScrollView(.vertical) {
                         
-                        Button(action: {
-                            self.speedupListVM.UpdateAllTotals()
-                            self.presentChart = true
-                        }) {
-                            Text("Chart")
-                                .frame(width: geometry.size.width/2 - 24, height: nil, alignment: .center)
-                                .padding(4)
-                                .foregroundColor(Color.black)
-                                .background(Color.white)
-                                .cornerRadius(4)
-                        }.sheet(isPresented: self.$presentChart) {
-                            SpeedupChartView(speedupListVM: self.speedupListVM)
-                        }
-                        
-                    }
-                    
-                    
-                    BSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                        .cornerRadius(8)
-                    TSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                        .cornerRadius(8)
-                    RSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                        .cornerRadius(8)
-                    HSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                        .cornerRadius(8)
-                    USpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                        .cornerRadius(8)
-                    
-                    Spacer()
-                        .frame(height: 4)
-                    
-                    SpeedupTotalView(speedupListVM: self.speedupListVM)
-                        .padding(.bottom, 16)
-                }.offset(y: self.kGuardian.slide).animation(.easeInOut(duration: 0.3))
+                        VStack(spacing: 8) {
+                            Text("Speedup Calculator")
+                                .bold()
+                                .font(.title)
+                                .foregroundColor(Color("DeepOrange"))
+                                .padding(.top, 32)
+                            
+                            ChartButtonView(speedupListVM: self.speedupListVM)
+                            
+                            BSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                                .cornerRadius(8)
+                            TSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                                .cornerRadius(8)
+                            RSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                                .cornerRadius(8)
+                            HSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                                .cornerRadius(8)
+                            USpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                                .cornerRadius(8)
+                            
+                            Spacer()
+                                .frame(height: 4)
+                            
+                            SpeedupTotalView(speedupListVM: self.speedupListVM)
+                                .padding(.bottom, 16)
+                        }.offset(y: self.kGuardian.slide).animation(.easeInOut(duration: 0.35))
+                    }.onAppear { self.kGuardian.addObserver() }
+                        .onDisappear { self.kGuardian.removeObserver() }
                 }
-            }.onAppear { self.kGuardian.addObserver() }
-                .onDisappear { self.kGuardian.removeObserver() }
-        }.onTapGesture {
-            self.endEditing()
-        }
+            }.onTapGesture {
+                self.endEditing()
+            
         }
     }
 }
@@ -104,6 +71,48 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+    }
+}
+
+struct ChartButtonView: View {
+    
+    @ObservedObject var speedupListVM: SpeedupListViewModel
+    
+    @State private var showingAlert = false
+    @State private var presentChart = false
+    
+    var body: some View {
+        GeometryReader { geometry in
+            HStack {
+                Button(action: {
+                    self.speedupListVM.SaveAndUpdateTotals()
+                    self.showingAlert = true
+                }) {
+                    Text("Save")
+                        .frame(width: geometry.size.width/2 - 24, height: nil, alignment: .center)
+                        .padding(4)
+                        .foregroundColor(Color.black)
+                        .background(Color.white)
+                        .cornerRadius(4)
+                }.alert(isPresented: self.$showingAlert) {
+                    Alert(title: Text("All speedups saved!"), message: Text("Check out the charts!"), dismissButton: .default(Text("R\"OK\"")))
+                }
+                
+                Button(action: {
+                    self.speedupListVM.UpdateAllTotals()
+                    self.presentChart = true
+                }) {
+                    Text("Chart")
+                        .frame(width: geometry.size.width/2 - 24, height: nil, alignment: .center)
+                        .padding(4)
+                        .foregroundColor(Color.black)
+                        .background(Color.white)
+                        .cornerRadius(4)
+                }.sheet(isPresented: self.$presentChart) {
+                    SpeedupChartView(speedupListVM: self.speedupListVM)
+                }
+            }
+        }
     }
 }
 
