@@ -40,6 +40,7 @@ struct ContentView: View {
                                 .padding(.top, 32)
                             
                             ChartButtonView(speedupListVM: self.speedupListVM)
+                                .padding()
                             
                             BSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
                                 .cornerRadius(8)
@@ -83,13 +84,13 @@ struct ChartButtonView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            HStack {
+            HStack (alignment: .center){
                 Button(action: {
                     self.speedupListVM.SaveAndUpdateTotals()
                     self.showingAlert = true
                 }) {
                     Text("Save")
-                        .frame(width: geometry.size.width/2 - 24, height: nil, alignment: .center)
+                        .frame(width: geometry.size.width/2.5, height: nil, alignment: .center)
                         .padding(4)
                         .foregroundColor(Color.black)
                         .background(Color.white)
@@ -103,7 +104,7 @@ struct ChartButtonView: View {
                     self.presentChart = true
                 }) {
                     Text("Chart")
-                        .frame(width: geometry.size.width/2 - 24, height: nil, alignment: .center)
+                        .frame(width: geometry.size.width/2.5, height: nil, alignment: .center)
                         .padding(4)
                         .foregroundColor(Color.black)
                         .background(Color.white)

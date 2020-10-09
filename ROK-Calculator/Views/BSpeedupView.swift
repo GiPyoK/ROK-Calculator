@@ -47,11 +47,11 @@ struct BSpeedupView: View {
                                     Text(TIMENAMES[i])
                                     TextField("#", text: self.$speedupListVM.bSpeedups[i].1, onEditingChanged: {
                                         self.speedupListVM.calculateBuildSum()
-                                        if $0 { self.kGuardian.showField = 3 }
+                                        if $0 { self.kGuardian.showField = 0 }
                                     })
                                         .keyboardType(.numberPad)
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                                        .background(GeometryGetter(rect: self.$kGuardian.rects[3]))
+                                        .background(GeometryGetter(rect: self.$kGuardian.rects[0]))
                                 }.fixedSize()
                                     .frame(minWidth: 50, minHeight: 50, alignment: .center)
                                     .padding(.horizontal, 2)

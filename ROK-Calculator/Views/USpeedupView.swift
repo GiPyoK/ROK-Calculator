@@ -44,10 +44,10 @@ struct USpeedupView: View {
                                 Text(TIMENAMES[i])
                                 TextField("#", text: self.$speedupListVM.uSpeedups[i].1, onEditingChanged: {
                                     self.speedupListVM.calculateUniversalSum()
-                                    if $0 { self.kGuardian.showField = 0 }
+                                    if $0 { self.kGuardian.showField = 4 }
                                 }).keyboardType(.numberPad)
                                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                                    .background(GeometryGetter(rect: self.$kGuardian.rects[0]))
+                                    .background(GeometryGetter(rect: self.$kGuardian.rects[4]))
                             }.fixedSize()
                                 .frame(minWidth: 50, minHeight: 50, alignment: .center)
                                 .padding(.horizontal, 2)

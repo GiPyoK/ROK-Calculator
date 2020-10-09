@@ -47,11 +47,11 @@ struct HSpeedupView: View {
                                     Text(TIMENAMES[i])
                                     TextField("#", text: self.$speedupListVM.hSpeedups[i].1, onEditingChanged: {
                                         self.speedupListVM.calculateHealSum()
-                                        if $0 { self.kGuardian.showField = 4 }
+                                        if $0 { self.kGuardian.showField = 3 }
                                     })
                                         .keyboardType(.numberPad)
                                         .textFieldStyle(RoundedBorderTextFieldStyle())
-                                        .background(GeometryGetter(rect: self.$kGuardian.rects[4]))
+                                        .background(GeometryGetter(rect: self.$kGuardian.rects[3]))
                                 }.fixedSize()
                                     .frame(minWidth: 50, minHeight: 50, alignment: .center)
                                     .padding(.horizontal, 2)
