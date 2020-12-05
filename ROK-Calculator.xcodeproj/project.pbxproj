@@ -33,6 +33,7 @@
 /* Begin PBXFileReference section */
 		A61300D924DA6F78000724CA /* SpeedUpViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedUpViewModel.swift; sourceTree = "<group>"; };
 		A623DE4F257B3D0D00F3C07A /* UIApplication+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
+		A623DE59257B41EC00F3C07A /* ROK-Calculator.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "ROK-Calculator.entitlements"; sourceTree = "<group>"; };
 		A63CE7A824E257AE00DBBA0F /* Background.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Background.swift; sourceTree = "<group>"; };
 		A63CE7AA24E25A4600DBBA0F /* SpeedupTotalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedupTotalView.swift; sourceTree = "<group>"; };
 		A68C88E624EEF1CB0049825F /* SpeedupChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpeedupChartView.swift; sourceTree = "<group>"; };
@@ -109,6 +110,7 @@
 		A696813824D75B9B00D57394 /* ROK-Calculator */ = {
 			isa = PBXGroup;
 			children = (
+				A623DE59257B41EC00F3C07A /* ROK-Calculator.entitlements */,
 				A696813924D75B9B00D57394 /* AppDelegate.swift */,
 				A696813B24D75B9B00D57394 /* SceneDelegate.swift */,
 				A696814224D75B9C00D57394 /* Assets.xcassets */,
@@ -383,8 +385,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ROK-Calculator/ROK-Calculator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ROK-Calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = FLZ8CLXX64;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -395,9 +398,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gipyokim.ROK-Calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -408,8 +412,9 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "ROK-Calculator/ROK-Calculator.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"ROK-Calculator/Preview Content\"";
 				DEVELOPMENT_TEAM = FLZ8CLXX64;
 				EMBED_ASSET_PACKS_IN_PRODUCT_BUNDLE = YES;
@@ -420,9 +425,10 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.1;
+				MARKETING_VERSION = 1.2;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.gipyokim.ROK-Calculator";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
