@@ -20,24 +20,25 @@ struct TSpeedupView: View {
     }
     
     var body: some View {
-            VStack {
-                HStack {
-                    VStack {
-                        Image("Training_Speedup")
-                        Button(action: {
-                            self.reset()
-                            print(self.speedupListVM.tSpeedups)
-                        }) {
-                            Text("Clear")
-                                .padding(4)
-                                .foregroundColor(Color.white)
-                                .background(Color("BurntSienna"))
-                                .cornerRadius(4)
-                        }.padding(.leading, 4)
-                        Spacer()
-                            .frame(height: 4)
-                    }
-                    ScrollView(.horizontal, showsIndicators: false) {
+        VStack {
+            HStack {
+                VStack {
+                    Image("Training_Speedup")
+                    Button(action: {
+                        self.reset()
+                        print(self.speedupListVM.tSpeedups)
+                    }) {
+                        Text("Clear")
+                            .padding(4)
+                            .foregroundColor(Color.white)
+                            .background(Color("BurntSienna"))
+                            .cornerRadius(4)
+                    }.padding(.leading, 4)
+                    Spacer()
+                        .frame(height: 4)
+                }
+                ScrollView(.horizontal, showsIndicators: false) {
+                    ZStack {
                         HStack {
                             ForEach(speedupListVM.tSpeedups.indices) { i in
                                 VStack {
@@ -46,16 +47,30 @@ struct TSpeedupView: View {
                                         self.speedupListVM.calculateTrainSum()
                                         if $0 { self.kGuardian.showField = 1 }
                                     }).keyboardType(.numberPad)
-                                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                                        .background(GeometryGetter(rect: self.$kGuardian.rects[1]))
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .background(GeometryGetter(rect: self.$kGuardian.rects[1]))
                                 }.fixedSize()
-                                    .frame(minWidth: 50, minHeight: 50, alignment: .center)
-                                    .padding(.horizontal, 2)
-                                    .padding(.vertical, 5)
+                                .frame(minWidth: 50, minHeight: 50, alignment: .center)
+                                .padding(.horizontal, 2)
+                                .padding(.vertical, 5)
                             }
                         }.padding(.horizontal)
+                        
+                        GeometryReader { geometry in
+                            VStack(spacing: 0) {
+                                Rectangle()
+                                    .foregroundColor(Color.clear)
+                                    .frame(width: geometry.size.width, height: geometry.size
+                                            .height/2)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        UIApplication.shared.endEditing()
+                                    }
+                            }
+                        }
                     }
-                }.background(Color("AbyssGreen"))
-            }
+                }
+            }.background(Color("AbyssGreen"))
         }
     }
+}

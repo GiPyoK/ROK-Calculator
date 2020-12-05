@@ -32,9 +32,3 @@ struct SpeedupChartView: View {
         }
     }
 }
-
-//struct SpeedupChartView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        SpeedupChartView()
-//    }
-//}

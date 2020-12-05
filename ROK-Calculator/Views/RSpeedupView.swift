@@ -41,23 +41,38 @@ struct RSpeedupView: View {
                 }
                 
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(speedupListVM.rSpeedups.indices) { i in
+                    ZStack {
+                        HStack {
+                            ForEach(speedupListVM.rSpeedups.indices) { i in
                                 VStack {
                                     Text(TIMENAMES[i])
                                     TextField("#", text: self.$speedupListVM.rSpeedups[i].1, onEditingChanged: {
                                         self.speedupListVM.calculateResearchSum()
                                         if $0 { self.kGuardian.showField = 2 }
                                     })
-                                        .keyboardType(.numberPad)
-                                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                                        .background(GeometryGetter(rect: self.$kGuardian.rects[2]))
+                                    .keyboardType(.numberPad)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .background(GeometryGetter(rect: self.$kGuardian.rects[2]))
                                 }.fixedSize()
-                                    .frame(minWidth: 50, minHeight: 50, alignment: .center)
-                                    .padding(.horizontal, 2)
-                                    .padding(.vertical, 5)
+                                .frame(minWidth: 50, minHeight: 50, alignment: .center)
+                                .padding(.horizontal, 2)
+                                .padding(.vertical, 5)
                             }
-                    }.padding(.horizontal)
+                        }.padding(.horizontal)
+                        
+                        GeometryReader { geometry in
+                            VStack(spacing: 0) {
+                                Rectangle()
+                                    .foregroundColor(Color.clear)
+                                    .frame(width: geometry.size.width, height: geometry.size
+                                            .height/2)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        UIApplication.shared.endEditing()
+                                    }
+                            }
+                        }
+                    }
                 }
             }.background(Color("AbyssGreen"))
         }

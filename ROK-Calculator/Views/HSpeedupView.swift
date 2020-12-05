@@ -22,7 +22,6 @@ struct HSpeedupView: View {
     var body: some View {
         VStack {
             HStack {
-                
                 VStack {
                     Image("Healing_Speedup")
                     Button(action: {
@@ -41,23 +40,38 @@ struct HSpeedupView: View {
                 }
                 
                 ScrollView(.horizontal, showsIndicators: false) {
-                    HStack {
-                        ForEach(speedupListVM.hSpeedups.indices) { i in
+                    ZStack {
+                        HStack {
+                            ForEach(speedupListVM.hSpeedups.indices) { i in
                                 VStack {
                                     Text(TIMENAMES[i])
                                     TextField("#", text: self.$speedupListVM.hSpeedups[i].1, onEditingChanged: {
                                         self.speedupListVM.calculateHealSum()
                                         if $0 { self.kGuardian.showField = 3 }
                                     })
-                                        .keyboardType(.numberPad)
-                                        .textFieldStyle(RoundedBorderTextFieldStyle())
-                                        .background(GeometryGetter(rect: self.$kGuardian.rects[3]))
+                                    .keyboardType(.numberPad)
+                                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                                    .background(GeometryGetter(rect: self.$kGuardian.rects[3]))
                                 }.fixedSize()
-                                    .frame(minWidth: 50, minHeight: 50, alignment: .center)
-                                    .padding(.horizontal, 2)
-                                    .padding(.vertical, 5)
+                                .frame(minWidth: 50, minHeight: 50, alignment: .center)
+                                .padding(.horizontal, 2)
+                                .padding(.vertical, 5)
+                            }
+                        }.padding(.horizontal)
+                        
+                        GeometryReader { geometry in
+                            VStack(spacing: 0) {
+                                Rectangle()
+                                    .foregroundColor(Color.clear)
+                                    .frame(width: geometry.size.width, height: geometry.size
+                                            .height/2)
+                                    .contentShape(Rectangle())
+                                    .onTapGesture {
+                                        UIApplication.shared.endEditing()
+                                    }
+                            }
                         }
-                    }.padding(.horizontal)
+                    }
                 }
             }.background(Color("AbyssGreen"))
         }
