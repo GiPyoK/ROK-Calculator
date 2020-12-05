@@ -14,57 +14,54 @@ struct ContentView: View {
     
     @ObservedObject var speedupListVM: SpeedupListViewModel
     @ObservedObject private var kGuardian = KeyboardGuardian(textFieldCount: 5)
-
+    
     init() {
         self.speedupListVM = SpeedupListViewModel()
-    }
-    
-    private func endEditing() {
-        UIApplication.shared.endEditing()
     }
     
     var body: some View {
         Background {
             ZStack {
-               
-                    Color("CoolGray")
-                        .edgesIgnoringSafeArea(.all)
+                
+                Color("CoolGray")
+                    .edgesIgnoringSafeArea(.all)
+                
+                ScrollView(.vertical) {
                     
-                    ScrollView(.vertical) {
+                    VStack(spacing: 8) {
+                        Text("Speedup Calculator")
+                            .bold()
+                            .font(.title)
+                            .foregroundColor(Color("DeepOrange"))
+                            .padding(.top, 32)
+                            .contentShape(Rectangle())
+                            .onTapGesture {
+                                UIApplication.shared.endEditing()
+                            }
                         
-                        VStack(spacing: 8) {
-                            Text("Speedup Calculator")
-                                .bold()
-                                .font(.title)
-                                .foregroundColor(Color("DeepOrange"))
-                                .padding(.top, 32)
-                            
-                            ChartButtonView(speedupListVM: self.speedupListVM)
-                                .padding()
-                            
-                            BSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                                .cornerRadius(8)
-                            TSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                                .cornerRadius(8)
-                            RSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                                .cornerRadius(8)
-                            HSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                                .cornerRadius(8)
-                            USpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
-                                .cornerRadius(8)
-                            
-                            Spacer()
-                                .frame(height: 4)
-                            
-                            SpeedupTotalView(speedupListVM: self.speedupListVM)
-                                .padding(.bottom, 16)
-                        }.offset(y: self.kGuardian.slide).animation(.easeInOut(duration: 0.35))
-                    }.onAppear { self.kGuardian.addObserver() }
-                        .onDisappear { self.kGuardian.removeObserver() }
-                }
-            }.onTapGesture {
-                self.endEditing()
-            
+                        ChartButtonView(speedupListVM: self.speedupListVM)
+                            .padding()
+                        
+                        BSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                            .cornerRadius(8)
+                        TSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                            .cornerRadius(8)
+                        RSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                            .cornerRadius(8)
+                        HSpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                            .cornerRadius(8)
+                        USpeedupView(speedupListVM: self.speedupListVM, kGuardian: self.kGuardian)
+                            .cornerRadius(8)
+                        
+                        Spacer()
+                            .frame(height: 4)
+                        
+                        SpeedupTotalView(speedupListVM: self.speedupListVM)
+                            .padding(.bottom, 16)
+                    }.offset(y: self.kGuardian.slide).animation(.easeInOut(duration: 0.35))
+                }.onAppear { self.kGuardian.addObserver() }
+                .onDisappear { self.kGuardian.removeObserver() }
+            }
         }
     }
 }
@@ -84,19 +81,20 @@ struct ChartButtonView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            HStack (alignment: .center){
+            HStack {
                 Button(action: {
                     self.speedupListVM.SaveAndUpdateTotals()
                     self.showingAlert = true
                 }) {
                     Text("Save")
-                        .frame(width: geometry.size.width/2.5, height: nil, alignment: .center)
+                        .frame(width: geometry.size.width/2 - 16, height: nil, alignment: .center)
                         .padding(4)
                         .foregroundColor(Color.black)
                         .background(Color.white)
                         .cornerRadius(4)
                 }.alert(isPresented: self.$showingAlert) {
-                    Alert(title: Text("All speedups saved!"), message: Text("Check out the charts!"), dismissButton: .default(Text("R\"OK\"")))
+                    UIApplication.shared.endEditing()
+                    return Alert(title: Text("All speedups saved!"), message: Text("Check out the charts!"), dismissButton: .default(Text("R\"OK\"")))
                 }
                 
                 Button(action: {
@@ -104,7 +102,7 @@ struct ChartButtonView: View {
                     self.presentChart = true
                 }) {
                     Text("Chart")
-                        .frame(width: geometry.size.width/2.5, height: nil, alignment: .center)
+                        .frame(width: geometry.size.width/2 - 16, height: nil, alignment: .center)
                         .padding(4)
                         .foregroundColor(Color.black)
                         .background(Color.white)
@@ -117,9 +115,3 @@ struct ChartButtonView: View {
     }
 }
 
-extension UIApplication {
-    func endEditing() {
-        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
-    
-}
